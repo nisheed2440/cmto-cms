@@ -1,0 +1,29 @@
+/*
+Theme Name: CMTO Event Theme
+Theme URI: https://www.github.com/nisheed2440/cmto
+Author: Nisheed Jagadish
+Author URI: https://www.github.com/nisheed2440/
+Description: CMS Theme for CMTO event application
+Version: 0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: sreventstheme
+Tags: cmto,headless,api,angular,react,vue,graphql
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+.cmto-cms{
+    min-height: 100%;
+    height: 100%;
+    background-color: black;
+}
+.cmto-cms.admin-bar{
+    min-height: calc(100% - 35px);
+    height: calc(100% - 35px);
+}
+.cmto-logo{
+    margin-top: 150px;
+    margin-bottom: 20px;
+}
