@@ -35,4 +35,6 @@ function get_theme_custom_logo() {
 // Auto install the plugins using TGM plugin activation
 require_once dirname( __FILE__ ) . '/includes/activate-plugins.php';
 
+// API Registration
+require_once dirname( __FILE__ ) . '/includes/api.php';
 ?>
