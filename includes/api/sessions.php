@@ -56,6 +56,7 @@ function get_session_meta($session) {
         'order' => $sessionMeta['order'],
         'venue' => $sessionMeta['venue'],
         'time' => $sessionMeta['time'],
+        'type' => $sessionMeta['type'],
     );
 }
 
