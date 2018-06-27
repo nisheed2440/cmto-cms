@@ -87,7 +87,7 @@ function get_sessions() {
     $sessions = [];
     $posts = get_posts(array(
         'post_type'         => 'session',
-        'posts_per_page'    => 0,
+        'posts_per_page'    => -1,
     ));
     foreach($posts as $session){
         array_push($sessions, get_formated_session_data($session));

@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-<!-- generator="WordPress/4.9.6" created="2018-06-26 11:27" -->
+<!-- generator="WordPress/4.9.6" created="2018-06-27 08:16" -->
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.1/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +29,7 @@
 	<title>CMTO &#124; CMS</title>
 	<link>http://localhost/wordpress</link>
 	<description>CMS for the headless CMTO events app</description>
-	<pubDate>Tue, 26 Jun 2018 11:27:31 +0000</pubDate>
+	<pubDate>Wed, 27 Jun 2018 08:16:05 +0000</pubDate>
 	<language></language>
 	<wp:wxr_version>1.1</wp:wxr_version>
 	<wp:base_site_url>http://localhost/wordpress</wp:base_site_url>
@@ -96,7 +96,11 @@
 		<wp:post_password></wp:post_password>
 		<wp:postmeta>
 			<wp:meta_key>field_5b3217a8cf510</wp:meta_key>
-			<wp:meta_value><![CDATA[a:12:{s:3:"key";s:19:"field_5b3217a8cf510";s:5:"label";s:4:"Type";s:4:"name";s:4:"type";s:4:"type";s:6:"select";s:12:"instructions";s:30:"Select the type of the session";s:8:"required";s:1:"1";s:7:"choices";a:4:{s:7:"session";s:7:"session";s:8:"workshop";s:8:"workshop";s:5:"break";s:5:"break";s:7:"keynote";s:7:"keynote";}s:13:"default_value";s:7:"session";s:10:"allow_null";s:1:"0";s:8:"multiple";s:1:"0";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:2:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:4;}]]></wp:meta_value>
+			<wp:meta_value><![CDATA[a:12:{s:3:"key";s:19:"field_5b3217a8cf510";s:5:"label";s:4:"Type";s:4:"name";s:4:"type";s:4:"type";s:6:"select";s:12:"instructions";s:30:"Select the type of the session";s:8:"required";s:1:"1";s:7:"choices";a:4:{s:7:"session";s:7:"session";s:8:"workshop";s:8:"workshop";s:5:"break";s:5:"break";s:7:"keynote";s:7:"keynote";}s:13:"default_value";s:7:"session";s:10:"allow_null";s:1:"0";s:8:"multiple";s:1:"0";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";s:5:"value";s:0:"";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:4;}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>rule</wp:meta_key>
+			<wp:meta_value><![CDATA[a:5:{s:5:"param";s:9:"post_type";s:8:"operator";s:2:"==";s:5:"value";s:7:"session";s:8:"order_no";i:0;s:8:"group_no";i:0;}]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>field_5b3204d444319</wp:meta_key>
@@ -105,10 +109,6 @@
 		<wp:postmeta>
 			<wp:meta_key>layout</wp:meta_key>
 			<wp:meta_value><![CDATA[default]]></wp:meta_value>
-		</wp:postmeta>
-		<wp:postmeta>
-			<wp:meta_key>rule</wp:meta_key>
-			<wp:meta_value><![CDATA[a:5:{s:5:"param";s:9:"post_type";s:8:"operator";s:2:"==";s:5:"value";s:7:"session";s:8:"order_no";i:0;s:8:"group_no";i:0;}]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>position</wp:meta_key>
@@ -127,12 +127,16 @@
 			<wp:meta_value><![CDATA[a:15:{s:3:"key";s:19:"field_5b32054e4431b";s:5:"label";s:5:"Order";s:4:"name";s:5:"order";s:4:"type";s:6:"number";s:12:"instructions";s:45:"The order in which the session should appear.";s:8:"required";s:1:"1";s:13:"default_value";s:1:"0";s:11:"placeholder";s:0:"";s:7:"prepend";s:0:"";s:6:"append";s:0:"";s:3:"min";s:1:"0";s:3:"max";s:3:"100";s:4:"step";s:0:"";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";s:5:"value";s:0:"";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:3;}]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
+			<wp:meta_key>field_5b33475196bb5</wp:meta_key>
+			<wp:meta_value><![CDATA[a:14:{s:3:"key";s:19:"field_5b33475196bb5";s:5:"label";s:8:"Duration";s:4:"name";s:8:"duration";s:4:"type";s:4:"text";s:12:"instructions";s:27:"Add duration of the session";s:8:"required";s:1:"1";s:13:"default_value";s:0:"";s:11:"placeholder";s:12:"e.g. 35 mins";s:7:"prepend";s:0:"";s:6:"append";s:0:"";s:10:"formatting";s:4:"none";s:9:"maxlength";s:0:"";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:19:"field_5b3217a8cf510";s:8:"operator";s:2:"==";s:5:"value";s:7:"session";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:5;}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
 			<wp:meta_key>_edit_last</wp:meta_key>
 			<wp:meta_value><![CDATA[1]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>field_5b320459374fa</wp:meta_key>
-			<wp:meta_value><![CDATA[a:12:{s:3:"key";s:19:"field_5b320459374fa";s:5:"label";s:8:"Speakers";s:4:"name";s:8:"speakers";s:4:"type";s:11:"post_object";s:12:"instructions";s:43:"Select the speakers presenting the session.";s:8:"required";s:1:"1";s:9:"post_type";a:1:{i:0;s:7:"speaker";}s:8:"taxonomy";a:1:{i:0;s:3:"all";}s:10:"allow_null";s:1:"0";s:8:"multiple";s:1:"1";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:4:"null";s:8:"operator";s:2:"==";s:5:"value";s:0:"";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:0;}]]></wp:meta_value>
+			<wp:meta_value><![CDATA[a:12:{s:3:"key";s:19:"field_5b320459374fa";s:5:"label";s:8:"Speakers";s:4:"name";s:8:"speakers";s:4:"type";s:11:"post_object";s:12:"instructions";s:43:"Select the speakers presenting the session.";s:8:"required";s:1:"0";s:9:"post_type";a:1:{i:0;s:7:"speaker";}s:8:"taxonomy";a:1:{i:0;s:3:"all";}s:10:"allow_null";s:1:"0";s:8:"multiple";s:1:"1";s:17:"conditional_logic";a:3:{s:6:"status";s:1:"0";s:5:"rules";a:1:{i:0;a:3:{s:5:"field";s:19:"field_5b3217a8cf510";s:8:"operator";s:2:"==";s:5:"value";s:7:"session";}}s:8:"allorany";s:3:"all";}s:8:"order_no";i:0;}]]></wp:meta_value>
 		</wp:postmeta>
 	</item>
 	<item>
