@@ -27,21 +27,24 @@ function get_session_terms($session){
 function get_session_speakers($session){
     $speakers = [];
     $speakerPosts =  get_field('speakers', $session);
-    foreach($speakerPosts as $speaker) {
-        $speakerMeta = get_fields($speaker->ID);
-        array_push($speakers, array(
-            'id' => $speaker->ID,
-            'name'=> $speaker->post_title,
-            'description'=> $speaker->post_excerpt,
-            'image' => $speakerMeta['image'],
-            'social' => array(
-                'linkedin' => $speakerMeta['linkedin'],
-                'facebook' => $speakerMeta['facebook'],
-                'twitter' => $speakerMeta['twitter'],
-                'github' => $speakerMeta['github'],
-            )
-        ));
+    if( $speakerPosts ) {
+        foreach($speakerPosts as $speaker) {
+            $speakerMeta = get_fields($speaker->ID);
+            array_push($speakers, array(
+                'id' => $speaker->ID,
+                'name'=> $speaker->post_title,
+                'description'=> $speaker->post_excerpt,
+                'image' => $speakerMeta['image'],
+                'social' => array(
+                    'linkedin' => $speakerMeta['linkedin'],
+                    'facebook' => $speakerMeta['facebook'],
+                    'twitter' => $speakerMeta['twitter'],
+                    'github' => $speakerMeta['github'],
+                )
+            ));
+        }
     }
+    
     return $speakers;
 }
 /**
