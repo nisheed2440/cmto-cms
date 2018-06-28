@@ -43,3 +43,5 @@ yarn-error.log*
 # Ignore CSS
 xt/src/**/*.css
 
+# Local Env files
+.env*.local
