@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import Collapse from "@material-ui/core/Collapse";
 import Icon from "@material-ui/core/Icon";
 import SessionTag from "../SessionTag";
+import { Link } from "react-router-dom";
 import "./TimelineCard.css";
 const styles = theme => ({
   root: {
@@ -143,7 +144,8 @@ class TimelineCard extends Component {
               variant="contained"
               size="small"
               color="secondary"
-              className={classes.button}
+              component={Link}
+              to={`/home/agenda/${session.id}`}
             >
               Show More
             </Button>

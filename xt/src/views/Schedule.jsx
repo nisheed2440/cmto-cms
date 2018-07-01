@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import TimelineCard from "../components/TimelineCard/TimelineCard";
+import ShowMore from "../components/ShowMore";
 import { actionUpdateTab, actionUpdateFavorites } from "../store/actions";
 const styles = theme => ({
   spinner: {
@@ -15,9 +16,6 @@ const styles = theme => ({
 });
 
 class Schedule extends Component {
-  state = {
-    expanded: false
-  };
   componentWillMount() {
     const { updateTab } = this.props;
     updateTab("agenda");
@@ -77,22 +75,35 @@ class Schedule extends Component {
       </Grid>
     );
   };
+  createSubRoute = sessions => {
+    return (
+      <Route
+        path={"/home/agenda/:sessionId"}
+        exact
+        render={({ match }) => {
+          const selectedSession = sessions.filter(
+            session => session.id.toString() === match.params.sessionId
+          );
+          if (selectedSession.length) {
+            return <ShowMore session={selectedSession[0]} />;
+          }
+          return <Redirect to="/home/agenda/" />;
+        }}
+      />
+    );
+  };
   render() {
     const { sessions } = this.props;
     return (
       <Fragment>
-        {sessions.length
-          ? this.createSessionList(sessions)
-          : this.showSpinner()}
-        <div>
-          <Route
-            path={"/home/agenda/:sessionId"}
-            render={({ match }) => {
-              console.log(match.params.sessionId);
-              return "h2llo";
-            }}
-          />
-        </div>
+        {sessions.length ? (
+          <Fragment>
+            {this.createSessionList(sessions)}
+            {this.createSubRoute(sessions)}
+          </Fragment>
+        ) : (
+          this.showSpinner()
+        )}
       </Fragment>
     );
   }
