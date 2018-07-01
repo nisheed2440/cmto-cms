@@ -15,7 +15,8 @@ import "./TimelineCard.css";
 const styles = theme => ({
   root: {
     backgroundColor: "#ffffff",
-    marginBottom: 16
+    marginBottom: '0.5em',
+    marginTop: '0.5em'
   },
   footer: {
     justifyContent: "flex-end"
@@ -41,13 +42,24 @@ class TimelineCard extends Component {
       expanded: !this.state.expanded
     });
   };
+  isFavourite() {
+    const { session, favorites } = this.props;
+    if (favorites.indexOf(session.id) >= 0) {
+      return (
+        <div className={"has-text-centered has-text-warning"}>
+          <Icon>star</Icon>
+        </div>
+      );
+    }
+    return;
+  }
   render() {
     const { session, classes } = this.props;
     return (
       <Card className={classes.root}>
         <CardHeader
           title={
-            <Typography gutterBottom noWrap variant="body2">
+            <Typography gutterBottom variant="body2">
               {session.title}
             </Typography>
           }
@@ -68,22 +80,29 @@ class TimelineCard extends Component {
             </Fragment>
           }
           action={
-            <IconButton
-              onClick={this.toggleExpanded}
-              className={`${classes.expand} ${
-                this.state.expanded ? classes.expandOpen : ""
-              }`}
-            >
-              <Icon>expand_more</Icon>
-            </IconButton>
+            <Fragment>
+              <IconButton
+                onClick={this.toggleExpanded}
+                className={`${classes.expand} ${
+                  this.state.expanded ? classes.expandOpen : ""
+                }`}
+              >
+                <Icon>expand_more</Icon>
+              </IconButton>
+              {this.isFavourite()}
+            </Fragment>
           }
         />
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             {session.speakers.map(speaker => (
               <Fragment key={speaker.id}>
-                <Typography gutterBottom noWrap variant="body2">{speaker.name}</Typography>
-                <Typography gutterBottom noWrap variant="caption">{speaker.designation}</Typography>
+                <Typography gutterBottom noWrap variant="body2">
+                  {speaker.name}
+                </Typography>
+                <Typography gutterBottom noWrap variant="caption">
+                  {speaker.designation}
+                </Typography>
               </Fragment>
             ))}
             <Typography variant="body1">{session.content}</Typography>
@@ -102,11 +121,13 @@ class TimelineCard extends Component {
 TimelineCard.propTypes = {
   classes: PropTypes.object.isRequired,
   session: PropTypes.object.isRequired,
-  moreCallback: PropTypes.func
+  moreCallback: PropTypes.func,
+  favorites: PropTypes.array.isRequired
 };
 
 TimelineCard.defaultProps = {
-  session: { meta: {}, speakers: [], topics: [] }
+  session: { meta: {}, speakers: [], topics: [] },
+  favorites: []
 };
 
 export default withStyles(styles)(TimelineCard);

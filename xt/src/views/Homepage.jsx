@@ -17,7 +17,10 @@ import { connect } from "react-redux";
 import {
   actionUpdateScheduleInfo,
   actionUpdateFilterTags,
-  actionUpdateLoader
+  actionUpdateLoader,
+  actionToggleSidebar,
+  actionApplyFilters,
+  actionClearFilters
 } from "../store/actions";
 import MainLoader from "../components/MainLoader/MainLoader";
 
@@ -52,6 +55,21 @@ class Homepage extends Component {
       });
   };
 
+  toggleSidebar = () => {
+    const { toggleSidebar, sidebarOpen } = this.props;
+    toggleSidebar(!sidebarOpen);
+  };
+
+  clearFilters = () => {
+    const { clearFilters } = this.props;
+    clearFilters();
+  };
+
+  applyFilters = data => {
+    const { applyFilters } = this.props;
+    applyFilters(data);
+  };
+
   componentWillMount() {
     const { updateLoader } = this.props;
     updateLoader(true);
@@ -67,18 +85,23 @@ class Homepage extends Component {
   }
 
   render() {
-    const { sidebarOpen, isVisible, tab, filters } = this.props;
+    const { sidebarOpen, isVisible, tab, filters, appliedFilters } = this.props;
     return (
       <React.Fragment>
-        <HeroBanner imageSrc={BannerImage}>
+        {/* <HeroBanner imageSrc={BannerImage}>
           <LazyLoad height={200}>
             <img src={WninLogo} alt="Logo" />
           </LazyLoad>
-        </HeroBanner>
+        </HeroBanner> */}
         <Paper elevation={1}>
           <NavTabs tab={tab} tabClickHandler={this.handleChange} />
         </Paper>
-        <FilterHeader title={tab} disabled={!filters.length} />
+        <FilterHeader
+          count={appliedFilters.length}
+          title={tab}
+          disabled={!filters.length}
+          buttonClick={this.toggleSidebar}
+        />
         <main className="section">
           <div className="container">
             <Switch>
@@ -96,9 +119,16 @@ class Homepage extends Component {
               />
               <Redirect from="/home" to="/home/agenda" />
             </Switch>
-            <FilterSidebar isOpen={sidebarOpen} />
           </div>
         </main>
+        <FilterSidebar
+          sidebarOpen={sidebarOpen}
+          filters={filters}
+          appliedFilters={appliedFilters}
+          clearCallback={this.clearFilters}
+          applyCallback={this.applyFilters}
+          toggleSidebar={this.toggleSidebar}
+        />
         <MainLoader isVisible={isVisible} />
       </React.Fragment>
     );
@@ -109,6 +139,7 @@ Homepage.propTypes = {
   classes: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   filters: PropTypes.array.isRequired,
+  appliedFilters: PropTypes.array.isRequired,
   sidebarOpen: PropTypes.bool.isRequired,
   updateData: PropTypes.func.isRequired,
   updateFilters: PropTypes.func.isRequired,
@@ -119,7 +150,8 @@ const mapStateToProps = state => ({
   sidebarOpen: state.sidebar.isOpen,
   isVisible: state.loader.isVisible,
   tab: state.tab.value,
-  filters: state.sessions.filters
+  filters: state.sessions.filters,
+  appliedFilters: state.sessions.appliedFilters
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -131,6 +163,15 @@ const mapDispatchToProps = dispatch => ({
   },
   updateLoader: data => {
     dispatch(actionUpdateLoader(data));
+  },
+  toggleSidebar: isOpen => {
+    dispatch(actionToggleSidebar(isOpen));
+  },
+  applyFilters: data => {
+    dispatch(actionApplyFilters(data));
+  },
+  clearFilters: () => {
+    dispatch(actionClearFilters());
   }
 });
 
