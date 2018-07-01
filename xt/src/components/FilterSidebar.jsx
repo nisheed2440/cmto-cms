@@ -74,13 +74,8 @@ class FilterSidebar extends Component {
     clearCallback();
   };
 
-  applyCallback = () => {
+  handleFiterChange = (event) => {
     const { applyCallback } = this.props;
-    window.sessionStorage.setItem("wnin.appliedFilters", this.state.appliedFilters);
-    applyCallback(this.state.appliedFilters);
-  };
-
-  handleFiterChange = (event, isChecked) => {
     let tempArr = [...this.state.appliedFilters];
     let index = tempArr.indexOf(event.target.value);
     if (index > -1) {
@@ -91,6 +86,8 @@ class FilterSidebar extends Component {
     this.setState({
       appliedFilters: tempArr
     });
+    window.sessionStorage.setItem("wnin.appliedFilters", tempArr);
+    applyCallback(tempArr);
   };
 
   isChecked = filterId => {
@@ -166,15 +163,6 @@ class FilterSidebar extends Component {
             >
               CLEAR ALL
             </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={this.applyCallback}
-            >
-              APPLY
-            </Button>
           </div>
         </div>
       </Drawer>
@@ -187,7 +175,6 @@ FilterSidebar.propTypes = {
   sidebarOpen: PropTypes.bool.isRequired,
   toggleSidebar: PropTypes.func.isRequired,
   clearCallback: PropTypes.func.isRequired,
-  applyCallback: PropTypes.func.isRequired,
   filters: PropTypes.array.isRequired,
   appliedFilters: PropTypes.array.isRequired
 };

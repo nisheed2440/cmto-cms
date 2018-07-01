@@ -2,14 +2,22 @@ import {
   FETCHED_SCHEDULE_INFO,
   FETCHED_FILTER_TAGS,
   CLEAR_APPLIED_FILTERS,
-  APPLY_FILTERS
+  APPLY_FILTERS,
+  UPDATE_FAVORITES
 } from "../actions";
 
 let appliedFilters = window.sessionStorage.getItem("wnin.appliedFilters");
+let favorites = window.sessionStorage.getItem("wnin.favorites");
 appliedFilters = appliedFilters ? appliedFilters.split(",") : [];
+favorites = favorites ? favorites.split(",") : [];
 
 function sessionReducer(
-  state = { data: [], filters: [], appliedFilters: appliedFilters },
+  state = {
+    data: [],
+    filters: [],
+    appliedFilters: appliedFilters,
+    favorites: favorites
+  },
   action
 ) {
   switch (action.type) {
@@ -28,6 +36,10 @@ function sessionReducer(
     case APPLY_FILTERS:
       return Object.assign({}, state, {
         appliedFilters: [...action.value]
+      });
+    case UPDATE_FAVORITES:
+      return Object.assign({}, state, {
+        favorites: [...action.value]
       });
     default:
       return state;

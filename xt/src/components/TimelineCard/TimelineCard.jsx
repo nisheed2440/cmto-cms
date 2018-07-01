@@ -15,8 +15,8 @@ import "./TimelineCard.css";
 const styles = theme => ({
   root: {
     backgroundColor: "#ffffff",
-    marginBottom: '0.5em',
-    marginTop: '0.5em'
+    marginBottom: "0.5em",
+    marginTop: "0.5em"
   },
   footer: {
     justifyContent: "flex-end"
@@ -30,6 +30,9 @@ const styles = theme => ({
   },
   expandOpen: {
     transform: "rotate(180deg)"
+  },
+  icon: {
+    marginRight: 5
   }
 });
 
@@ -42,9 +45,21 @@ class TimelineCard extends Component {
       expanded: !this.state.expanded
     });
   };
-  isFavourite() {
-    const { session, favorites } = this.props;
-    if (favorites.indexOf(session.id) >= 0) {
+  updateFavs = () => {
+    const { favCallback, session, favorites } = this.props;
+    const tempArr = [...favorites];
+    const id = session.id.toString();
+    const index = tempArr.indexOf(id);
+    if (index > -1) {
+      tempArr.splice(index, 1);
+    } else {
+      tempArr.push(id);
+    }
+    window.sessionStorage.setItem("wnin.favorites", tempArr);
+    favCallback(tempArr);
+  };
+  favIcon = () => {
+    if (this.isFavourite()) {
       return (
         <div className={"has-text-centered has-text-warning"}>
           <Icon>star</Icon>
@@ -52,7 +67,12 @@ class TimelineCard extends Component {
       );
     }
     return;
-  }
+  };
+  isFavourite = () => {
+    const { session, favorites } = this.props;
+    const id = session.id.toString();
+    return favorites.indexOf(id) > -1;
+  };
   render() {
     const { session, classes } = this.props;
     return (
@@ -89,7 +109,7 @@ class TimelineCard extends Component {
               >
                 <Icon>expand_more</Icon>
               </IconButton>
-              {this.isFavourite()}
+              {this.favIcon()}
             </Fragment>
           }
         />
@@ -108,7 +128,23 @@ class TimelineCard extends Component {
             <Typography variant="body1">{session.content}</Typography>
           </CardContent>
           <CardActions className={classes.footer}>
-            <Button size="small" color="secondary" className={classes.button}>
+            <Button
+              size="small"
+              color="secondary"
+              className={classes.button}
+              onClick={this.updateFavs}
+            >
+              <Icon className={classes.icon}>
+                {this.isFavourite() ? "star" : "star_border"}
+              </Icon>
+              {this.isFavourite() ? "Liked" : "Like"}
+            </Button>
+            <Button
+              variant="contained"
+              size="small"
+              color="secondary"
+              className={classes.button}
+            >
               Show More
             </Button>
           </CardActions>
@@ -122,6 +158,7 @@ TimelineCard.propTypes = {
   classes: PropTypes.object.isRequired,
   session: PropTypes.object.isRequired,
   moreCallback: PropTypes.func,
+  favCallback: PropTypes.func,
   favorites: PropTypes.array.isRequired
 };
 

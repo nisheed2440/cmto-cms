@@ -107,7 +107,6 @@ class Homepage extends Component {
             <Switch>
               <Route
                 path="/home/:tab"
-                exact
                 render={({ match }) => {
                   const tab = match.params.tab;
                   if (routeMapping[tab]) {
@@ -117,7 +116,8 @@ class Homepage extends Component {
                   }
                 }}
               />
-              <Redirect from="/home" to="/home/agenda" />
+              <Redirect exact from="/home" to="/home/agenda" />
+              <Redirect exact from="/" to="/home" />
             </Switch>
           </div>
         </main>

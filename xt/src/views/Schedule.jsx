@@ -4,13 +4,14 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
-import TimelineCard from "../components/TimelineCard/TimelineCard";
 import { connect } from "react-redux";
-import { actionUpdateTab } from "../store/actions";
+import { Route, Redirect } from "react-router-dom";
+import TimelineCard from "../components/TimelineCard/TimelineCard";
+import { actionUpdateTab, actionUpdateFavorites } from "../store/actions";
 const styles = theme => ({
   spinner: {
     margin: theme.spacing.unit * 2
-  },
+  }
 });
 
 class Schedule extends Component {
@@ -22,12 +23,18 @@ class Schedule extends Component {
     updateTab("agenda");
   }
   createSessionList = sessions => {
-    const { classes } = this.props;
+    const { updateFavorites, favorites } = this.props;
     return (
       <div className="timeline">
         <header className="timeline-header">
           <span className="tag is-medium is-primary">
-            <Typography variant="body1" className={'has-text-white'} component={'span'}>Start</Typography>
+            <Typography
+              variant="body1"
+              className={"has-text-white"}
+              component={"span"}
+            >
+              Start
+            </Typography>
           </span>
         </header>
         {sessions.map(session => {
@@ -35,15 +42,28 @@ class Schedule extends Component {
             <div key={session.id} className="timeline-item is-primary">
               <div className="timeline-marker" />
               <div className="timeline-content">
-                <Typography variant="body2" className="heading has-text-grey">{session.meta.time}</Typography>
-                <TimelineCard key={session.id} session={session} />
+                <Typography variant="body2" className="heading has-text-grey">
+                  {session.meta.time}
+                </Typography>
+                <TimelineCard
+                  key={session.id}
+                  session={session}
+                  favCallback={updateFavorites}
+                  favorites={favorites}
+                />
               </div>
             </div>
           );
         })}
         <header className="timeline-header">
           <span className="tag is-medium is-primary">
-            <Typography variant="body1" className={'has-text-white'}  component={'span'}>End</Typography>
+            <Typography
+              variant="body1"
+              className={"has-text-white"}
+              component={"span"}
+            >
+              End
+            </Typography>
           </span>
         </header>
       </div>
@@ -58,13 +78,21 @@ class Schedule extends Component {
     );
   };
   render() {
-    const { sessions, filters } = this.props;
-    console.log(filters);
+    const { sessions } = this.props;
     return (
       <Fragment>
         {sessions.length
           ? this.createSessionList(sessions)
           : this.showSpinner()}
+        <div>
+          <Route
+            path={"/home/agenda/:sessionId"}
+            render={({ match }) => {
+              console.log(match.params.sessionId);
+              return "h2llo";
+            }}
+          />
+        </div>
       </Fragment>
     );
   }
@@ -73,17 +101,24 @@ class Schedule extends Component {
 Schedule.propTypes = {
   classes: PropTypes.object.isRequired,
   sessions: PropTypes.array.isRequired,
-  updateTab: PropTypes.func.isRequired
+  favorites: PropTypes.array.isRequired,
+  appliedFilters: PropTypes.array.isRequired,
+  updateTab: PropTypes.func.isRequired,
+  updateFavorites: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   sessions: state.sessions.data,
-  filters: state.sessions.filters
+  appliedFilters: state.sessions.appliedFilters,
+  favorites: state.sessions.favorites
 });
 
 const mapDispatchToProps = dispatch => ({
   updateTab: data => {
     dispatch(actionUpdateTab(data));
+  },
+  updateFavorites: data => {
+    dispatch(actionUpdateFavorites(data));
   }
 });
 
