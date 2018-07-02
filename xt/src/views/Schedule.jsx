@@ -20,51 +20,81 @@ class Schedule extends Component {
     const { updateTab } = this.props;
     updateTab("agenda");
   }
-  createSessionList = sessions => {
+  containsFilters = (sessionTopics, appliedFilters) => {
+    for (var i = 0, len = sessionTopics.length; i < len; i++) {
+      if (appliedFilters.indexOf(sessionTopics[i].id.toString()) > -1)
+        return true;
+    }
+    return false;
+  };
+  getFilteredSessions = (sessions, appliedFilters) => {
+    let filteredSessions = [];
+    sessions.forEach(session => {
+      if (appliedFilters.length) {
+        if (this.containsFilters(session.topics, appliedFilters)) {
+          filteredSessions.push(session);
+        }
+      } else {
+        filteredSessions.push(session);
+      }
+    });
+    return this.getSessions(filteredSessions);
+  };
+  getSessions = sessions => {
     const { updateFavorites, favorites } = this.props;
     return (
       <div className="timeline">
-        <header className="timeline-header">
-          <span className="tag is-medium is-primary">
-            <Typography
-              variant="body1"
-              className={"has-text-white"}
-              component={"span"}
-            >
-              Start
-            </Typography>
-          </span>
-        </header>
-        {sessions.map(session => {
-          return (
-            <div key={session.id} className="timeline-item is-primary">
-              <div className="timeline-marker" />
-              <div className="timeline-content">
-                <Typography variant="body2" className="heading has-text-grey">
-                  {session.meta.time}
-                </Typography>
-                <TimelineCard
-                  key={session.id}
-                  session={session}
-                  favCallback={updateFavorites}
-                  favorites={favorites}
-                />
-              </div>
+      <header className="timeline-header">
+        <span className="tag is-medium is-primary">
+        <Typography
+          variant="body1"
+          className={"has-text-white"}
+          component={"span"}
+        >
+          Start
+        </Typography>
+        </span>
+      </header>
+      {sessions.map(session => {
+        return (
+          <div key={session.id} className="timeline-item is-primary">
+            <div className="timeline-marker" />
+            <div className="timeline-content">
+              <Typography variant="body2" className="heading has-text-grey">
+                {session.meta.time}
+              </Typography>
+              <TimelineCard
+                key={session.id}
+                session={session}
+                favCallback={updateFavorites}
+                favorites={favorites}
+              />
             </div>
-          );
-        })}
-        <header className="timeline-header">
-          <span className="tag is-medium is-primary">
-            <Typography
-              variant="body1"
-              className={"has-text-white"}
-              component={"span"}
-            >
-              End
-            </Typography>
-          </span>
-        </header>
+          </div>
+        );
+      })}
+      <header className="timeline-header">
+        <span className="tag is-medium is-primary">
+        <Typography
+          variant="body1"
+          className={"has-text-white"}
+          component={"span"}
+        >
+          End
+        </Typography>
+        </span>
+      </header>
       </div>
+    );
+  }
+  createSessionList = sessions => {
+    const { updateFavorites, favorites, appliedFilters } = this.props;
+    return (
+      <Fragment>
+          {appliedFilters.length
+          ? this.getFilteredSessions(sessions, appliedFilters)
+          : this.getSessions(sessions)}
+        </Fragment>
     );
   };
   showSpinner = () => {
