@@ -19,6 +19,11 @@ const styles = theme => ({
     backgroundColor: "#e1e1e1"
   },
   heading: {
+    fontSize: "24px",
+    fontWeight: "600"
+  },
+  title: {
+    fontSize: "16px",
     fontWeight: "600"
   },
   textMargin: {
@@ -124,7 +129,7 @@ class ShowMore extends Component {
             <Grid container className={classes.ratingSection}>
               <Grid item xs={12} sm={8}>
                 <div>
-                  <Typography variant="body2" className={classes.heading}>
+                  <Typography variant="body2" className={classes.title}>
                     {"Rate this session"}
                   </Typography>
                 </div>
