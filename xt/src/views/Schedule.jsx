@@ -42,6 +42,11 @@ class Schedule extends Component {
   };
   getSessions = sessions => {
     const { updateFavorites, favorites } = this.props;
+    // displays sessions based on order
+    let sortedArr = sessions.sort(function(obj1, obj2) {
+      return obj1.meta.order - obj2.meta.order;
+    });
+
     return (
       <div className="timeline">
       <header className="timeline-header">

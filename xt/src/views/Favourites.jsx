@@ -62,6 +62,10 @@ class Favourites extends Component {
       favorites,
       appliedFilters
     );
+    // displays sessions based on order
+    let sortedFavSessions = favSessions.sort(function(obj1, obj2) {
+      return obj1.meta.order - obj2.meta.order;
+    });
     if(favSessions.length) {
       return favSessions.map(session => {
         return this.getTimelineCard(session);
