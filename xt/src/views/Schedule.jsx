@@ -40,27 +40,33 @@ class Schedule extends Component {
     });
     return this.getSessions(filteredSessions);
   };
-  getSessions = sessions => {
-    const { updateFavorites, favorites } = this.props;
-    // displays sessions based on order
-    let sortedArr = sessions.sort(function(obj1, obj2) {
-      return obj1.meta.order - obj2.meta.order;
-    });
 
-    return (
-      <div className="timeline">
-      <header className="timeline-header">
-        <span className="tag is-medium is-primary">
-        <Typography
-          variant="body1"
-          className={"has-text-white"}
-          component={"span"}
-        >
-          Start
-        </Typography>
-        </span>
-      </header>
-      {sessions.map(session => {
+  groupBy = ( sessionArr , propName ) =>
+  {
+    let sessionGroups = {};
+    sessionArr.forEach( ( o ) =>
+    {
+      let group = JSON.stringify( propName(o) );
+      sessionGroups[group] = sessionGroups[group] || [];
+      sessionGroups[group].push( o );  
+    });
+    return Object.keys(sessionGroups).map( ( group ) =>
+    {
+      return sessionGroups[group]; 
+      
+    });
+  };
+
+  displaySessionsByGroup = (groupedSessions) => {
+    const { updateFavorites, favorites } = this.props;
+    return groupedSessions.map( sessionGroup => {
+      sessionGroup.map( (session, i) => {
+        if( sessionGroup.length > 1 && i!== 0 ) {
+          delete session.meta.time;
+        }
+      });
+      
+      return sessionGroup.map( session => {
         return (
           <div key={session.id} className="timeline-item is-primary">
             <div className="timeline-marker" />
@@ -77,7 +83,37 @@ class Schedule extends Component {
             </div>
           </div>
         );
-      })}
+      })
+      
+    })
+  };
+  
+  getSessions = sessions => {
+    const { updateFavorites, favorites } = this.props;
+    // displays sessions based on order
+    let sortedArr = sessions.sort(function(obj1, obj2) {
+      return obj1.meta.order - obj2.meta.order;
+    });
+
+    let result = this.groupBy(sessions, function(item)
+    {
+      return [item.meta.time];
+    });
+    
+    return (
+      <div className="timeline">
+      <header className="timeline-header">
+        <span className="tag is-medium is-primary">
+        <Typography
+          variant="body1"
+          className={"has-text-white"}
+          component={"span"}
+        >
+          Start
+        </Typography>
+        </span>
+      </header>
+      {this.displaySessionsByGroup(result)}
       <header className="timeline-header">
         <span className="tag is-medium is-primary">
         <Typography
