@@ -6,7 +6,6 @@ import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
 import IconButton from "@material-ui/core/IconButton";
 import Icon from "@material-ui/core/Icon";
-import Img from "react-image";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import SocialShare from "./SocialShare";
@@ -97,10 +96,11 @@ class ShowMore extends Component {
                   return (
                     <Grid container className={classes.speakerContainer} key={speaker.id} spacing={0} justify="center">
                       <Grid item xs={12} sm={4}>
-                        <Img
+                        {/* Should add banner component */}
+                        {/* <Img
                           src={'../assets/speaker1.jpg'}
                           decode={true}
-                        />
+                        /> */}
                       </Grid>
                       <Grid item xs={12} sm={8}>
                         <div key={session.id} className="speaker-item is-primary">
