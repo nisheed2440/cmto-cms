@@ -60,6 +60,7 @@ function get_session_meta($session) {
         'venue' => $sessionMeta['venue'],
         'time' => $sessionMeta['time'],
         'type' => $sessionMeta['type'],
+        'duration' => $sessionMeta['duration'],
     );
 }
 

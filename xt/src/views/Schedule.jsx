@@ -79,7 +79,6 @@ class Schedule extends Component {
     return (
       <Route
         path={"/home/agenda/:sessionId"}
-        exact
         render={({ match }) => {
           const selectedSession = sessions.filter(
             session => session.id.toString() === match.params.sessionId
