@@ -88,7 +88,7 @@ class Schedule extends Component {
     );
   }
   createSessionList = sessions => {
-    const { updateFavorites, favorites, appliedFilters } = this.props;
+    const { appliedFilters } = this.props;
     return (
       <Fragment>
           {appliedFilters.length
