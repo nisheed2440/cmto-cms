@@ -97,10 +97,6 @@ class ShowMore extends Component {
                     <Grid container className={classes.speakerContainer} key={speaker.id} spacing={0} justify="center">
                       <Grid item xs={12} sm={4}>
                         {/* Should add banner component */}
-                        {/* <Img
-                          src={'../assets/speaker1.jpg'}
-                          decode={true}
-                        /> */}
                       </Grid>
                       <Grid item xs={12} sm={8}>
                         <div key={session.id} className="speaker-item is-primary">

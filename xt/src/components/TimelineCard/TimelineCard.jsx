@@ -59,13 +59,15 @@ class TimelineCard extends Component {
     window.sessionStorage.setItem("wnin.favorites", tempArr);
     favCallback(tempArr);
   };
-  favIcon = () => {
+  favIcon = (type) => {
     if (this.isFavourite()) {
-      return (
-        <div className={"has-text-centered has-text-warning"}>
-          <Icon>star</Icon>
-        </div>
-      );
+      if( type !== 'break' && type !== 'keynote' ) {
+        return (
+          <div className={"has-text-centered has-text-warning"}>
+            <Icon>star</Icon>
+          </div>
+        );
+      }
     }
     return;
   };
@@ -73,6 +75,22 @@ class TimelineCard extends Component {
     const { session, favorites } = this.props;
     const id = session.id.toString();
     return favorites.indexOf(id) > -1;
+  };
+  showFavoriteIcon = (type) => {
+    const { classes } = this.props;
+    if( type.toLowerCase() !== "break" && type.toLowerCase() !== "keynote") {
+      return (<Button
+        size="small"
+        color="secondary"
+        className={classes.button}
+        onClick={this.updateFavs}
+      >
+        <Icon className={classes.icon}>
+          {this.isFavourite() ? "star" : "star_border"}
+        </Icon>
+        {this.isFavourite() ? "Liked" : "Like"}
+      </Button>);
+    }
   };
   render() {
     const { session, classes } = this.props;
@@ -110,7 +128,7 @@ class TimelineCard extends Component {
               >
                 <Icon>expand_more</Icon>
               </IconButton>
-              {this.favIcon()}
+              {this.favIcon(session.meta.type)}
             </Fragment>
           }
         />
@@ -129,17 +147,7 @@ class TimelineCard extends Component {
             <Typography variant="body1">{session.content}</Typography>
           </CardContent>
           <CardActions className={classes.footer}>
-            <Button
-              size="small"
-              color="secondary"
-              className={classes.button}
-              onClick={this.updateFavs}
-            >
-              <Icon className={classes.icon}>
-                {this.isFavourite() ? "star" : "star_border"}
-              </Icon>
-              {this.isFavourite() ? "Liked" : "Like"}
-            </Button>
+            {this.showFavoriteIcon(session.meta.type)}
             <Button
               variant="contained"
               size="small"
