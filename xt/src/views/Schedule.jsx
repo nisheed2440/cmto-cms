@@ -52,39 +52,64 @@ class Schedule extends Component {
     });
     return Object.keys(sessionGroups).map( ( group ) =>
     {
-      return sessionGroups[group]; 
+      if ( sessionGroups[group].length > 1 ) {
+        return sessionGroups[group];
+      }
+      else {
+        return sessionGroups[group][0];
+      }
       
     });
   };
 
+  displayTimeGroup = (sessionArr) => {
+    const { updateFavorites, favorites } = this.props;
+    return sessionArr.map( session => {
+      return (
+        <TimelineCard
+          key={session.id}
+          session={session}
+          favCallback={updateFavorites}
+          favorites={favorites}
+        />
+      );
+    })
+  };
+
   displaySessionsByGroup = (groupedSessions) => {
     const { updateFavorites, favorites } = this.props;
-    return groupedSessions.map( sessionGroup => {
-      sessionGroup.map( (session, i) => {
-        if( sessionGroup.length > 1 && i!== 0 ) {
-          delete session.meta.time;
-        }
-      });
-      
-      return sessionGroup.map( session => {
+    return groupedSessions.map( (sessionGroup, idx) => {
+      if ( sessionGroup.length ) {
         return (
-          <div key={session.id} className="timeline-item is-primary">
+          <div key={sessionGroup[0].id + idx} className="timeline-item is-primary">
             <div className="timeline-marker" />
             <div className="timeline-content">
               <Typography variant="body2" className="heading has-text-grey">
-                {session.meta.time}
+                {sessionGroup[0].meta.time}
+              </Typography>
+              {this.displayTimeGroup(sessionGroup)}
+            </div>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div key={sessionGroup.id} className="timeline-item is-primary">
+            <div className="timeline-marker" />
+            <div className="timeline-content">
+              <Typography variant="body2" className="heading has-text-grey">
+                {sessionGroup.meta.time}
               </Typography>
               <TimelineCard
-                key={session.id}
-                session={session}
+                key={sessionGroup.id}
+                session={sessionGroup}
                 favCallback={updateFavorites}
                 favorites={favorites}
               />
             </div>
           </div>
         );
-      })
-      
+      }
     })
   };
   
