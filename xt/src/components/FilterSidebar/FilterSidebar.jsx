@@ -79,9 +79,9 @@ class FilterSidebar extends Component {
               subheader={
                 <ListSubheader
                   component="li"
-                  classes={{ root: "wnin-fs-subtitle-wrapper" }}
+                  classes={{ root: "wnin-fs-list-subtitle-wrapper" }}
                 >
-                  <h3 className="wnin-fs-subtitle">By Topic</h3>
+                  <h3 className="wnin-fs-list-subtitle">By Topic</h3>
                 </ListSubheader>
               }
               className="wnin-fs-list"

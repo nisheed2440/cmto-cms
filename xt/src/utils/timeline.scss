@@ -1,11 +1,11 @@
+@import "./typography.scss";
 .timeline {
   @media screen and (min-width: 769px) {
     padding-left: 10%;
   }
-
-  .timeline-header{
-    @include f-45(16px, 16px * 1.27);
-  }
+}
+.timeline-header {
+  @include f-45(16px, 16px * 1.27);
 }
 .timeline .timeline-item {
   position: relative;

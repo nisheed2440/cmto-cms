@@ -31,3 +31,15 @@ body {
 
 @import "./utils/typography.scss";
 @import "./utils/timeline.scss";
+
+.wnin-fav {
+  &-placeholder {
+    display: block;
+    @include f-65(28px, 28px * 1.27);
+  }
+  &-item {
+    &-heading {
+      @include f-65(16px, 16px * 1.27);
+    }
+  }
+}

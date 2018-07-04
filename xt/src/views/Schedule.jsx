@@ -47,37 +47,67 @@ class Schedule extends Component {
       sessionGroups[group] = sessionGroups[group] || [];
       sessionGroups[group].push(o);
     });
-    return Object.keys(sessionGroups).map(group => {
-      return sessionGroups[group];
+    return Object.keys(sessionGroups).map( ( group ) =>
+    {
+      if ( sessionGroups[group].length > 1 ) {
+        return sessionGroups[group];
+      }
+      else {
+        return sessionGroups[group][0];
+      }
+      
     });
   };
 
-  displaySessionsByGroup = groupedSessions => {
+  displayTimeGroup = (sessionArr) => {
     const { updateFavorites, favorites } = this.props;
-    return groupedSessions.map(sessionGroup => {
-      sessionGroup.map((session, i) => {
-        if (sessionGroup.length > 1 && i !== 0) {
-          delete session.meta.time;
-        }
-      });
+    return sessionArr.map( session => {
+      return (
+        <TimelineCard
+          key={session.id}
+          session={session}
+          favCallback={updateFavorites}
+          favorites={favorites}
+        />
+      );
+    })
+  };
 
-      return sessionGroup.map(session => {
+  displaySessionsByGroup = (groupedSessions) => {
+    const { updateFavorites, favorites } = this.props;
+    return groupedSessions.map( (sessionGroup, idx) => {
+      if ( sessionGroup.length ) {
         return (
-          <div key={session.id} className="timeline-item is-primary">
+          <div key={sessionGroup[0].id + idx} className="timeline-item is-primary">
             <div className="timeline-marker" />
             <div className="timeline-content">
-              <span className="heading has-text-grey">{session.meta.time}</span>
+              <span className="heading has-text-grey">
+                {sessionGroup[0].meta.time}
+              </span>
+              {this.displayTimeGroup(sessionGroup)}
+            </div>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div key={sessionGroup.id} className="timeline-item is-primary">
+            <div className="timeline-marker" />
+            <div className="timeline-content">
+              <span className="heading has-text-grey">
+                {sessionGroup.meta.time}
+              </span>
               <TimelineCard
-                key={session.id}
-                session={session}
+                key={sessionGroup.id}
+                session={sessionGroup}
                 favCallback={updateFavorites}
                 favorites={favorites}
               />
             </div>
           </div>
         );
-      });
-    });
+      }
+    })
   };
 
   getSessions = sessions => {

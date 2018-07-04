@@ -1,21 +1,28 @@
+@import "../../utils/typography.scss";
 .wnin-fs {
   &-anchor-right {
     background-color: #fff;
   }
   &-wrapper {
-    width: 250px;
+    width: rem(325px);
     display: flex;
     flex-direction: column;
     height: 100%;
   }
   &-toolbar {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-top: rem(24px);
+    padding-left: rem(24px);
+    padding-right: rem(16px);
+    height: rem(60px);
   }
   &-title {
+    margin: 0;
+    @include f-55-r(28px, 28px * 1.27);
+    font-weight: normal;
     &-wrapper {
       flex: 1;
-      padding-top: 16px;
+      display: flex;
+      flex-direction: row;
     }
   }
   &-close {
@@ -23,24 +30,36 @@
   &-list {
     &-wrapper {
       flex: 1;
-      padding: 16px;
+      padding: rem(16px);
     }
     &-subtitle {
+      @include f-55-r(21px, 21px * 1.27);
+      font-weight: normal;
+      margin-top: rem(18px);
+      margin-bottom: rem(18px);
       &-wrapper {
         background-color: #fff;
         border-bottom: 1px solid #ccc;
-        padding-left: 0;
-        padding-bottom: 16px;
+        padding-left: rem(8px) !important;
+        padding-bottom: rem(4px);
       }
     }
     &-item {
+      padding-left: rem(12px);
+      padding-top: rem(6px);
+      padding-bottom: rem(6px);
       &-label {
+        @include f-55-r(15.66px, 15.66px * 1.27);
+        letter-spacing: rem(1px);
+        color: #000000;
       }
     }
   }
   &-clear {
     width: 80%;
     margin-bottom: 8px;
+    @include f-55-r(15.66px, 15.66px * 1.27);
+    color: #00b4d5;
   }
   &-footer {
     display: flex;

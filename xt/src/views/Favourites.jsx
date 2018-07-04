@@ -38,17 +38,14 @@ class Favourites extends Component {
   getTimelineCard = session => {
     const { updateFavorites, favorites } = this.props;
     return (
-      <div key={session.id} className="timeline-item is-primary">
-        <div className="timeline-marker" />
-        <div className="timeline-content">
-          <span className="heading has-text-grey">{session.meta.time}</span>
-          <TimelineCard
-            key={session.id}
-            session={session}
-            favCallback={updateFavorites}
-            favorites={favorites}
-          />
-        </div>
+      <div className="wnin-fav-item">
+        <span className="wnin-fav-item-heading has-text-grey">{session.meta.time}</span>
+        <TimelineCard
+          key={session.id}
+          session={session}
+          favCallback={updateFavorites}
+          favorites={favorites}
+        />
       </div>
     );
   };
@@ -75,7 +72,7 @@ class Favourites extends Component {
   };
   getFavPlaceHolder = (title = "No sessions found!") => {
     return (
-      <span className="wnin-favorite-placeholder has-text-grey has-text-centered">
+      <span className="wnin-fav-placeholder has-text-grey has-text-centered">
         {title}
       </span>
     );
