@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import TimelineCard from "../components/TimelineCard/TimelineCard";
 import { actionUpdateTab, actionUpdateFavorites } from "../store/actions";
@@ -42,9 +41,7 @@ class Favourites extends Component {
       <div key={session.id} className="timeline-item is-primary">
         <div className="timeline-marker" />
         <div className="timeline-content">
-          <Typography variant="body2" className="heading has-text-grey">
-            {session.meta.time}
-          </Typography>
+          <span className="heading has-text-grey">{session.meta.time}</span>
           <TimelineCard
             key={session.id}
             session={session}
@@ -66,19 +63,21 @@ class Favourites extends Component {
     let sortedFavSessions = favSessions.sort(function(obj1, obj2) {
       return obj1.meta.order - obj2.meta.order;
     });
-    if(favSessions.length) {
+    if (favSessions.length) {
       return favSessions.map(session => {
         return this.getTimelineCard(session);
       });
     } else {
-      return this.getFavPlaceHolder('No sessions found for the applied filters!');
+      return this.getFavPlaceHolder(
+        "No sessions found for the applied filters!"
+      );
     }
   };
-  getFavPlaceHolder = (title = 'No sessions found!') => {
+  getFavPlaceHolder = (title = "No sessions found!") => {
     return (
-      <Typography variant="title" className="has-text-grey has-text-centered">
+      <span className="wnin-favorite-placeholder has-text-grey has-text-centered">
         {title}
-      </Typography>
+      </span>
     );
   };
 

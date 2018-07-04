@@ -8,7 +8,7 @@ class NavTabs extends Component {
   render() {
     const { tab, tabClickHandler } = this.props;
     return (
-      <div className={"wnin-tabs-container"}>
+      <div className="wnin-tabs-container">
         <MUITabs
           value={tab}
           onChange={tabClickHandler}

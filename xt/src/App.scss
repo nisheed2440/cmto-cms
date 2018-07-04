@@ -29,38 +29,5 @@ body {
   min-height: 100%;
 }
 
-.timeline {
-  @media screen and (min-width: 769px) {
-    padding-left: 10%;
-  }
-}
-.timeline .timeline-item {
-  position: relative;
-  padding-bottom: 0;
-}
-.speaker-item {
-  padding: 15px;
-}
-
-.timeline .timeline-item .timeline-content {
-  padding: 0 0 0 12px;
-  width: 100%;
-
-  .heading {
-    display: block;
-    font-size: 14px;
-    letter-spacing: 1px; 
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    margin-top: 1em;
-
-
-    @media screen and (min-width: 769px) {
-      font-size: 16px;
-      top: 14px;
-      left: -88px;
-      position: absolute;
-      margin-top: 0;
-    }
-  }
-}
+@import "./utils/typography.scss";
+@import "./utils/timeline.scss";

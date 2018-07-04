@@ -1,0 +1,44 @@
+.timeline {
+  @media screen and (min-width: 769px) {
+    padding-left: 10%;
+  }
+
+  .timeline-header{
+    @include f-45(16px, 16px * 1.27);
+  }
+}
+.timeline .timeline-item {
+  position: relative;
+  padding-bottom: 0;
+}
+.speaker-item {
+  padding: 15px;
+}
+.timeline .timeline-item .timeline-marker {
+  top: 1rem;
+  @media screen and (min-width: 769px) {
+    top: 1.625rem;
+  }
+}
+.timeline .timeline-item .timeline-content {
+  padding: 0 0 0 12px;
+  width: 100%;
+
+  .heading {
+    display: block;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    margin-top: 1em;
+    @include f-65(16px, 16px * 1.27);
+
+    @media screen and (min-width: 769px) {
+      font-size: 16px;
+      top: 1.5rem;
+      left: -88px;
+      position: absolute;
+      margin-top: 0;
+    }
+  }
+}

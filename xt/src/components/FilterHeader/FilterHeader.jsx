@@ -3,16 +3,7 @@ import PropTypes from "prop-types";
 import IconButton from "@material-ui/core/IconButton";
 import Icon from "@material-ui/core/Icon";
 import Badge from "@material-ui/core/Badge";
-import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
 import "./FilterHeader.css";
-
-const styles = theme => ({
-  badge: {
-    top: -8,
-    right: -8
-  }
-});
 
 class FilterHeader extends Component {
   getButton() {
@@ -20,30 +11,30 @@ class FilterHeader extends Component {
     return (
       <IconButton
         aria-label="filter"
-        className={"wnin-filter-button"}
+        className="wnin-filter-button"
         disabled={disabled}
         onClick={buttonClick}
       >
-        <Icon className={"wnin-filter-button-icon"}>filter_list</Icon>
+        <Icon className="wnin-filter-button-icon">filter_list</Icon>
       </IconButton>
     );
   }
   getButtonWithBadge() {
-    const { disabled, count, buttonClick, classes } = this.props;
+    const { disabled, count, buttonClick } = this.props;
     return (
       <Badge
         color="primary"
-        classes={{ badge: classes.badge }}
+        classes={{ badge: "wnin-filter-badge" }}
         badgeContent={count || 0}
-        className={""}
+        className=""
       >
         <IconButton
           aria-label="filter"
-          className={"wnin-filter-button"}
+          className="wnin-filter-button"
           disabled={disabled}
           onClick={buttonClick}
         >
-          <Icon className={"wnin-filter-button-icon"}>filter_list</Icon>
+          <Icon className="wnin-filter-button-icon">filter_list</Icon>
         </IconButton>
       </Badge>
     );
@@ -51,12 +42,10 @@ class FilterHeader extends Component {
   render() {
     const { count, title } = this.props;
     return (
-      <div className={"wnin-filter-wrapper"}>
-        <div className={"wnin-filter-container container"}>
-          <Typography variant={"headline"} className={"wnin-filter-title"}>
-            {title}
-          </Typography>
-          <div className={"wnin-filter-button-wrapper"}>
+      <div className="wnin-filter-wrapper">
+        <div className="wnin-filter-container container">
+          <h1 className="wnin-filter-title">{title}</h1>
+          <div className="wnin-filter-button-wrapper">
             {count ? this.getButtonWithBadge() : this.getButton()}
           </div>
         </div>
@@ -66,7 +55,6 @@ class FilterHeader extends Component {
 }
 
 FilterHeader.propTypes = {
-  classes: PropTypes.object.isRequired,
   disabled: PropTypes.bool.isRequired,
   count: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
@@ -80,4 +68,4 @@ FilterHeader.defaultProps = {
   buttonClick: () => {}
 };
 
-export default withStyles(styles)(FilterHeader);
+export default FilterHeader;

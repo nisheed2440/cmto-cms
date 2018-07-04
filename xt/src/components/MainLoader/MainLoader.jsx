@@ -9,16 +9,16 @@ class Loader extends Component {
     const { isVisible } = this.props;
     return (
       <div
-        className={"wnin-loader"}
+        className="wnin-loader"
         style={{ display: isVisible ? "block" : "none" }}
       >
-        <div className={"wnin-loader-logo-wrapper"}>
+        <div className="wnin-loader-logo-wrapper">
           <div
-            className={"wnin-loader-logo"}
+            className="wnin-loader-logo"
             style={{ backgroundImage: `url(${WninLogo})` }}
           />
           <CircularProgress
-            className={"wnin-loader-spinner"}
+            className="wnin-loader-spinner"
             style={{ color: "#FFF" }}
             size={50}
           />

@@ -10,7 +10,7 @@ import HeroBanner from "../components/HeroBanner";
 import BannerImage from "../assets/images/bg8.jpg";
 import WninLogo from "../assets/images/CMTOu_white.png";
 import Schedule from "./Schedule";
-import FilterSidebar from "../components/FilterSidebar";
+import FilterSidebar from "../components/FilterSidebar/FilterSidebar";
 import FilterHeader from "../components/FilterHeader/FilterHeader";
 import Favourites from "./Favourites";
 import { connect } from "react-redux";

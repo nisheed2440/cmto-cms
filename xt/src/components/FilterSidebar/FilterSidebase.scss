@@ -1,0 +1,51 @@
+.wnin-fs {
+  &-anchor-right {
+    background-color: #fff;
+  }
+  &-wrapper {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &-toolbar {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  &-title {
+    &-wrapper {
+      flex: 1;
+      padding-top: 16px;
+    }
+  }
+  &-close {
+  }
+  &-list {
+    &-wrapper {
+      flex: 1;
+      padding: 16px;
+    }
+    &-subtitle {
+      &-wrapper {
+        background-color: #fff;
+        border-bottom: 1px solid #ccc;
+        padding-left: 0;
+        padding-bottom: 16px;
+      }
+    }
+    &-item {
+      &-label {
+      }
+    }
+  }
+  &-clear {
+    width: 80%;
+    margin-bottom: 8px;
+  }
+  &-footer {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    align-items: center;
+  }
+}

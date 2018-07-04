@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import TimelineCard from "../components/TimelineCard/TimelineCard";
@@ -41,39 +40,33 @@ class Schedule extends Component {
     return this.getSessions(filteredSessions);
   };
 
-  groupBy = ( sessionArr , propName ) =>
-  {
+  groupBy = (sessionArr, propName) => {
     let sessionGroups = {};
-    sessionArr.forEach( ( o ) =>
-    {
-      let group = JSON.stringify( propName(o) );
+    sessionArr.forEach(o => {
+      let group = JSON.stringify(propName(o));
       sessionGroups[group] = sessionGroups[group] || [];
-      sessionGroups[group].push( o );  
+      sessionGroups[group].push(o);
     });
-    return Object.keys(sessionGroups).map( ( group ) =>
-    {
-      return sessionGroups[group]; 
-      
+    return Object.keys(sessionGroups).map(group => {
+      return sessionGroups[group];
     });
   };
 
-  displaySessionsByGroup = (groupedSessions) => {
+  displaySessionsByGroup = groupedSessions => {
     const { updateFavorites, favorites } = this.props;
-    return groupedSessions.map( sessionGroup => {
-      sessionGroup.map( (session, i) => {
-        if( sessionGroup.length > 1 && i!== 0 ) {
+    return groupedSessions.map(sessionGroup => {
+      sessionGroup.map((session, i) => {
+        if (sessionGroup.length > 1 && i !== 0) {
           delete session.meta.time;
         }
       });
-      
-      return sessionGroup.map( session => {
+
+      return sessionGroup.map(session => {
         return (
           <div key={session.id} className="timeline-item is-primary">
             <div className="timeline-marker" />
             <div className="timeline-content">
-              <Typography variant="body2" className="heading has-text-grey">
-                {session.meta.time}
-              </Typography>
+              <span className="heading has-text-grey">{session.meta.time}</span>
               <TimelineCard
                 key={session.id}
                 session={session}
@@ -83,11 +76,10 @@ class Schedule extends Component {
             </div>
           </div>
         );
-      })
-      
-    })
+      });
+    });
   };
-  
+
   getSessions = sessions => {
     const { updateFavorites, favorites } = this.props;
     // displays sessions based on order
@@ -95,47 +87,30 @@ class Schedule extends Component {
       return obj1.meta.order - obj2.meta.order;
     });
 
-    let result = this.groupBy(sessions, function(item)
-    {
+    let result = this.groupBy(sessions, function(item) {
       return [item.meta.time];
     });
-    
+
     return (
       <div className="timeline">
-      <header className="timeline-header">
-        <span className="tag is-medium is-primary">
-        <Typography
-          variant="body1"
-          className={"has-text-white"}
-          component={"span"}
-        >
-          Start
-        </Typography>
-        </span>
-      </header>
-      {this.displaySessionsByGroup(result)}
-      <header className="timeline-header">
-        <span className="tag is-medium is-primary">
-        <Typography
-          variant="body1"
-          className={"has-text-white"}
-          component={"span"}
-        >
-          End
-        </Typography>
-        </span>
-      </header>
+        <header className="timeline-header">
+          <span className="tag is-medium is-primary has-text-white">Start</span>
+        </header>
+        {this.displaySessionsByGroup(result)}
+        <header className="timeline-header">
+          <span className="tag is-medium is-primary has-text-white">End</span>
+        </header>
       </div>
     );
-  }
+  };
   createSessionList = sessions => {
     const { appliedFilters } = this.props;
     return (
       <Fragment>
-          {appliedFilters.length
+        {appliedFilters.length
           ? this.getFilteredSessions(sessions, appliedFilters)
           : this.getSessions(sessions)}
-        </Fragment>
+      </Fragment>
     );
   };
   showSpinner = () => {
