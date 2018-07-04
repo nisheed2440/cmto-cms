@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = {
-  heroBanner: {
-    zIndex: -1
-  },
+  heroBanner: {},
   headline: {
     color: "#000000"
   }
@@ -24,7 +22,7 @@ class HeroBanner extends Component {
     return (
       <LazyHero
         imageSrc={imageSrc}
-        opacity={0.3}
+        opacity={0}
         parallaxOffset={40}
         className={classes.heroBanner}
         minHeight={"230px"}

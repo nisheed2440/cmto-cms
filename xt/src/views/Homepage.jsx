@@ -7,7 +7,7 @@ import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import NavTabs from "../components/NavTabs/NavTabs";
 import HeroBanner from "../components/HeroBanner";
-import BannerImage from "../assets/images/bg8.jpg";
+import BannerImage from "../assets/images/bg9.png";
 import WninLogo from "../assets/images/CMTOu_white.png";
 import Schedule from "./Schedule";
 import FilterSidebar from "../components/FilterSidebar/FilterSidebar";
@@ -38,19 +38,15 @@ class Homepage extends Component {
   };
 
   fetchSessions = () => {
-    return axios
-      .get(`${window.CMTOu.wnin.urls.api}/sessions`)
-      .catch(err => {
-        console.log(err);
-      });
+    return axios.get(`${window.CMTOu.wnin.urls.api}/sessions`).catch(err => {
+      console.log(err);
+    });
   };
 
   fetchFilters = () => {
-    return axios
-      .get(`${window.CMTOu.wnin.urls.api}/topics`)
-      .catch(err => {
-        console.log(err);
-      });
+    return axios.get(`${window.CMTOu.wnin.urls.api}/topics`).catch(err => {
+      console.log(err);
+    });
   };
 
   toggleSidebar = () => {
@@ -86,11 +82,13 @@ class Homepage extends Component {
     const { sidebarOpen, isVisible, tab, filters, appliedFilters } = this.props;
     return (
       <React.Fragment>
-        {/* <HeroBanner imageSrc={BannerImage}>
-          <LazyLoad height={200}>
-            <img src={WninLogo} alt="Logo" />
-          </LazyLoad>
-        </HeroBanner> */}
+        <div className="container">
+          <HeroBanner imageSrc={BannerImage}>
+            <LazyLoad height={260}>
+              <img src={WninLogo} alt="Logo" />
+            </LazyLoad>
+          </HeroBanner>
+        </div>
         <Paper elevation={1}>
           <NavTabs tab={tab} tabClickHandler={this.handleChange} />
         </Paper>
