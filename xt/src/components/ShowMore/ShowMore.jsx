@@ -54,7 +54,7 @@ class ShowMore extends Component {
         <div className={"wnin-modal-section"}>
           <div className={"container"}>
             <div className={"session-title"}>
-            <Typography variant="body2" className="wnin-modal-heading">
+            <Typography variant="body2" className="wnin-modal-title">
               {session.title}
             </Typography>
             <Typography gutterBottom variant="caption">
@@ -66,19 +66,19 @@ class ShowMore extends Component {
                 {session.speakers.map(speaker => {
                   return (
                     <Grid container className="wnin-modal-sp-container" key={speaker.id} spacing={0} justify="center">
-                      <Grid item xs={12} sm={4}>
+                      <Grid item xs={12} sm={2}>
                         {/* Should add banner component */}
                       </Grid>
-                      <Grid item xs={12} sm={8}>
+                      <Grid item xs={12} sm={10}>
                         <div key={session.id} className="wnin-modal-speaker-item is-primary">
                           <div className="wnin-modal-speaker-content">
-                            <Typography variant="body2" className="wnin-modal-heading">
+                            <Typography variant="body2" className="wnin-modal-title">
                               {speaker.name}
                             </Typography>
                             <Typography variant="caption" className="wnin-modal-text-margin has-text-grey">
                               {"Director of Technology, Experience Technology"}
                             </Typography>
-                            <Typography variant="body2" className="">
+                            <Typography variant="body2" className="wnin-modal-heading">
                               {speaker.description}
                             </Typography>
                             <SpeakerSocialShare title={session.title} social={speaker.social}/>

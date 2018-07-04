@@ -17,11 +17,6 @@ class SpeakerSocialShare extends Component {
     return (
       <Grid container className="wnin-ss-social-container">
         <Grid item xs={12} sm={10}>
-          <div className="wnin-ss-title">
-            <span>{"Share"}</span>
-          </div>
-        </Grid>
-        <Grid item xs={12} sm={10}>
           <div className="wnin-ss-icon">
             <TwitterShareButton
               url={social.twitter ? social.twitter : ''}
