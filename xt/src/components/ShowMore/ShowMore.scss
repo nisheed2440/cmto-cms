@@ -1,0 +1,39 @@
+@import "../../utils/typography.scss";
+.wnin-modal {
+    &-container {
+        background: #fff;
+    }
+    &-section {
+        padding: 3rem 1.5rem;
+    }
+    &-heading {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    &-sp-section {
+        background-color: #e1e1e1;
+    }
+    &-sp-container {
+        margin: 15px 0;
+    }
+    &-text-margin {
+        margin-bottom: 15px;
+    }
+    &-social-share {
+        float: left;
+        @media screen and (min-width: 769px) {
+            float: right;
+        }
+    }
+    &-rating-section {
+        margin-top: 25px;
+    }
+    &-rating-title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+    &-speaker-item {
+        padding: 15px;
+    }
+
+}

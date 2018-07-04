@@ -1,0 +1,19 @@
+@import "../../utils/typography.scss";
+.wnin-ss {
+    &-social-container {
+        display: -webkit-box;
+    }
+    &-title {
+        margin-right: 20px;
+        margin-top: 8px;
+    }
+    &-icon {
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+    }
+    &-button {
+        cursor: pointer;
+        outline: 0;
+    }
+}

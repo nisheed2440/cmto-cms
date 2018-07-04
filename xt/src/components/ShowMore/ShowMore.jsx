@@ -6,39 +6,10 @@ import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
 import IconButton from "@material-ui/core/IconButton";
 import Icon from "@material-ui/core/Icon";
-import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import SocialShare from "./SocialShare";
-
-const styles = theme => ({
-  dialogRoot: {
-    backgroundColor: "#ffffff"
-  },
-  speakerBg: {
-    backgroundColor: "#e1e1e1"
-  },
-  heading: {
-    fontSize: "24px",
-    fontWeight: "600"
-  },
-  title: {
-    fontSize: "16px",
-    fontWeight: "600"
-  },
-  textMargin: {
-    marginBottom: "15px"
-  },
-  speakerContainer: {
-    marginTop: "15px",
-    marginBottom: "15px"
-  },
-  socialShare: {
-    float: "right"
-  },
-  ratingSection: {
-    marginTop: "25px"
-  }
-});
+import SocialShare from "../SocialShare/SocialShare";
+import SpeakerSocialShare from "../SpeakerSocialShare/SpeakerSocialShare";
+import "./ShowMore.css";
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -54,7 +25,7 @@ class ShowMore extends Component {
     });
   };
   render() {
-    const { classes, session } = this.props;
+    const { session } = this.props;
     const { redirect } = this.state;
     if (redirect) {
       return <Redirect to="/home/agenda/" />;
@@ -65,7 +36,7 @@ class ShowMore extends Component {
         open={true}
         onClose={this.onClose}
         TransitionComponent={Transition}
-        classes={{ paper: classes.dialogRoot }}
+        classes={{ paper: "wnin-modal-container" }}
       >
         <div className={"wnin-filter-wrapper"}>
           <div className={"wnin-filter-container container is-fluid"}>
@@ -80,36 +51,37 @@ class ShowMore extends Component {
             </div>
           </div>
         </div>
-        <div className={"section"}>
+        <div className={"wnin-modal-section"}>
           <div className={"container"}>
             <div className={"session-title"}>
-            <Typography variant="body2" className={classes.heading}>
+            <Typography variant="body2" className="wnin-modal-heading">
               {session.title}
             </Typography>
             <Typography gutterBottom variant="caption">
               {session.meta.duration} | {session.meta.venue}
             </Typography>
             </div>
-            <div className={classes.speakerBg}>
+            <div className="wnin-modal-sp-section">
             
                 {session.speakers.map(speaker => {
                   return (
-                    <Grid container className={classes.speakerContainer} key={speaker.id} spacing={0} justify="center">
+                    <Grid container className="wnin-modal-sp-container" key={speaker.id} spacing={0} justify="center">
                       <Grid item xs={12} sm={4}>
                         {/* Should add banner component */}
                       </Grid>
                       <Grid item xs={12} sm={8}>
-                        <div key={session.id} className="speaker-item is-primary">
-                          <div className="speaker-content">
-                            <Typography variant="body2" className={classes.heading}>
+                        <div key={session.id} className="wnin-modal-speaker-item is-primary">
+                          <div className="wnin-modal-speaker-content">
+                            <Typography variant="body2" className="wnin-modal-heading">
                               {speaker.name}
                             </Typography>
-                            <Typography variant="caption" className={classes.textMargin +" has-text-grey"}>
+                            <Typography variant="caption" className="wnin-modal-text-margin has-text-grey">
                               {"Director of Technology, Experience Technology"}
                             </Typography>
                             <Typography variant="body2" className="">
                               {speaker.description}
                             </Typography>
+                            <SpeakerSocialShare title={session.title} social={speaker.social}/>
                           </div>
                         </div>
                         </Grid>
@@ -118,22 +90,22 @@ class ShowMore extends Component {
                 })}
             </div>
             <div className={"session-desc"}>
-              <Typography variant="body2" className={"heading"}>
+              <Typography variant="body2" className="wnin-modal-heading">
                 {session.content}
               </Typography>
             </div>
-            <Grid container className={classes.ratingSection}>
-              <Grid item xs={12} sm={8}>
+            <Grid container className="wnin-modal-rating-section">
+              {/* <Grid item xs={12} sm={8}>
                 <div>
-                  <Typography variant="body2" className={classes.title}>
+                  <Typography variant="body2" className="wnin-modal-rating-title">
                     {"Rate this session"}
                   </Typography>
                 </div>
-              </Grid>
+              </Grid> */}
               <Grid item xs={12} sm={4}>
-                <div className={classes.socialShare}>
+                <div className="wnin-modal-social-share">
                   <Typography variant="body2">
-                    <SocialShare/>
+                    <SocialShare title={session.title}/>
                   </Typography>
                 </div>
               </Grid>
@@ -146,8 +118,7 @@ class ShowMore extends Component {
 }
 
 ShowMore.propTypes = {
-  classes: PropTypes.object.isRequired,
   session: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ShowMore);
+export default ShowMore;

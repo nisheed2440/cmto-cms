@@ -6,7 +6,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import TimelineCard from "../components/TimelineCard/TimelineCard";
-import ShowMore from "../components/ShowMore";
+import ShowMore from "../components/ShowMore/ShowMore";
 import { actionUpdateTab, actionUpdateFavorites } from "../store/actions";
 const styles = theme => ({
   spinner: {

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import { withStyles } from "@material-ui/core/styles";
 import {
   TwitterShareButton,
   FacebookShareButton,
@@ -10,80 +9,55 @@ import {
   TwitterIcon,
   GooglePlusIcon
 } from "react-share";
-
-const styles = theme => ({
-  socialContainer: {
-    display: "-webkit-box"
-  },
-  socialShareTitle: {
-    marginRight: "20px",
-    marginTop: "8px"
-  },
-  socialShareIcon: {
-    verticalAlign: "top",
-    display: "inline-block",
-    textAlign: "center"
-  },
-  shareCount: {
-    marginTop: "3px",
-    fontSize: "12px"
-  },
-  shareButton: {
-    cursor: "pointer",
-    outline: "0"
-  }
-});
+import "./SocialShare.css";
 
 class SocialShare extends Component {
   render() {
-    const shareUrl = "http://wnin.info";
-    const title = "CMTO";
-    const { classes } = this.props;
+    const shareUrl = window.location.href;
+    const { title } = this.props;
     return (
-      <Grid container className={classes.socialContainer}>
+      <Grid container className="wnin-ss-social-container">
         <Grid item xs={12} sm={10}>
-          <div className={classes.socialShareTitle}>
+          <div className="wnin-ss-title">
             <span>{"Share"}</span>
           </div>
         </Grid>
         <Grid item xs={12} sm={10}>
-          <div className={classes.socialShareIcon}>
+          <div className="wnin-ss-icon">
             <TwitterShareButton
               url={shareUrl}
               title={title}
-              className={classes.shareButton}
+              className="wnin-ss-button"
             >
               <TwitterIcon
                 size={40}
-                iconBgStyle={{ fill: "#ffffff" }}
+                iconBgStyle={{ fill: "transparent" }}
                 logoFillColor={"#000000"}
               />
             </TwitterShareButton>
-
-            <div className={classes.shareCount}>&nbsp;</div>
           </div>
-          <div className={classes.socialShareIcon}>
+          <div className="wnin-ss-icon">
             <FacebookShareButton
               url={shareUrl}
               quote={title}
-              className={classes.shareButton}
+              className="wnin-ss-button"
             >
               <FacebookIcon
                 size={40}
                 round={false}
-                iconBgStyle={{ fill: "#ffffff" }}
+                iconBgStyle={{ fill: "transparent" }}
                 logoFillColor={"#000000"}
               />
             </FacebookShareButton>
           </div>
-          <div className={classes.socialShareIcon}>
+          <div className="wnin-ss-icon">
             <GooglePlusShareButton
               url={shareUrl}
-              className={classes.shareButton}
+              className="wnin-ss-button"
             >
               <GooglePlusIcon
                 size={40}
-                iconBgStyle={{ fill: "#ffffff" }}
+                iconBgStyle={{ fill: "transparent" }}
                 logoFillColor={"#000000"}
               />
             </GooglePlusShareButton>
@@ -93,9 +67,7 @@ class SocialShare extends Component {
     );
   }
 }
-
 SocialShare.propTypes = {
-  classes: PropTypes.object.isRequired
+  title: PropTypes.string.isRequired
 };
-
-export default withStyles(styles)(SocialShare);
+export default SocialShare;
