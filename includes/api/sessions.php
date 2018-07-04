@@ -36,6 +36,7 @@ function get_session_speakers($session){
                 'description'=> $speaker->post_excerpt,
                 'image' => $speakerMeta['image'],
                 'title' => $speakerMeta['title'],
+                'designation' => $speakerMeta['designation'],
                 'social' => array(
                     'linkedin' => $speakerMeta['linkedin'],
                     'facebook' => $speakerMeta['facebook'],

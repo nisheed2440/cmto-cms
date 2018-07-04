@@ -38,18 +38,16 @@ class Homepage extends Component {
   };
 
   fetchSessions = () => {
-    // "https://api.myjson.com/bins/x87ta"
     return axios
-      .get("http://localhost/wordpress/wp-json/cmto/v1/sessions")
+      .get(`${window.CMTOu.wnin.urls.api}/sessions`)
       .catch(err => {
         console.log(err);
       });
   };
 
   fetchFilters = () => {
-    // "https://api.myjson.com/bins/1246ou"
     return axios
-      .get("http://localhost/wordpress/wp-json/cmto/v1/topics")
+      .get(`${window.CMTOu.wnin.urls.api}/topics`)
       .catch(err => {
         console.log(err);
       });
