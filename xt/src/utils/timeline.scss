@@ -5,11 +5,23 @@
   }
 }
 .timeline-header {
+  margin-left: rem(-15px);
+  @media screen and (min-width: 769px) {
+    margin-left:0;
+  }
   @include f-45(16px, 16px * 1.27);
+  .tag{
+    width:60px;
+    border-radius: 0;
+  }
 }
 .timeline .timeline-item {
   position: relative;
   padding-bottom: 0;
+  margin-left: rem(-13px);
+  @media screen and (min-width: 769px) {
+    margin-left: 2em;
+  }
 }
 .speaker-item {
   padding: 15px;
