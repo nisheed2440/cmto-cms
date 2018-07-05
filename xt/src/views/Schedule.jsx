@@ -162,7 +162,7 @@ class Schedule extends Component {
           if (selectedSession.length) {
             return <ShowMore session={selectedSession[0]} />;
           }
-          return <Redirect to="/home/agenda/" />;
+          return <Redirect to="/home/agenda" />;
         }}
       />
     );

@@ -69,7 +69,7 @@ class TimelineCard extends Component {
     }
   };
   render() {
-    const { session } = this.props;
+    const { session, baseRoute } = this.props;
     return (
       <Card className="wnin-tile-root">
         <CardHeader
@@ -127,7 +127,7 @@ class TimelineCard extends Component {
               size="small"
               color="secondary"
               component={Link}
-              to={`/home/agenda/${session.id}`}
+              to={`${baseRoute}${session.id}`}
             >
               Show More
             </Button>
@@ -142,12 +142,14 @@ TimelineCard.propTypes = {
   session: PropTypes.object.isRequired,
   moreCallback: PropTypes.func,
   favCallback: PropTypes.func,
-  favorites: PropTypes.array.isRequired
+  favorites: PropTypes.array.isRequired,
+  baseRoute: PropTypes.string.isRequired
 };
 
 TimelineCard.defaultProps = {
   session: { meta: {}, speakers: [], topics: [] },
-  favorites: []
+  favorites: [],
+  baseRoute: '/home/agenda/'
 };
 
 export default TimelineCard;

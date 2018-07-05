@@ -25,10 +25,10 @@ class ShowMore extends Component {
     });
   };
   render() {
-    const { session } = this.props;
+    const { session, baseRoute } = this.props;
     const { redirect } = this.state;
     if (redirect) {
-      return <Redirect to="/home/agenda/" />;
+      return <Redirect to={baseRoute} />;
     }
     return (
       <Dialog
@@ -118,7 +118,12 @@ class ShowMore extends Component {
 }
 
 ShowMore.propTypes = {
-  session: PropTypes.object.isRequired
+  session: PropTypes.object.isRequired,
+  baseRoute: PropTypes.string.isRequired,
+};
+
+ShowMore.defaultProps = {
+  baseRoute: '/home/agenda/'
 };
 
 export default ShowMore;

@@ -16,7 +16,7 @@ class NavTabs extends Component {
           centered={true}
         >
           <MUITab label="Agenda" value="agenda" />
-          <MUITab label="Favorites" value="favourites" />
+          <MUITab label="Favorites" value="favorites" />
         </MUITabs>
       </div>
     );
@@ -25,7 +25,7 @@ class NavTabs extends Component {
 
 NavTabs.propTypes = {
   tabClickHandler: PropTypes.func.isRequired,
-  tab: PropTypes.oneOf(["agenda", "favourites"])
+  tab: PropTypes.oneOf(["agenda", "favorites"])
 };
 
 NavTabs.defaultProps = {

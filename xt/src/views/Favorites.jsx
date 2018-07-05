@@ -2,12 +2,14 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import { Route, Redirect } from "react-router-dom";
 import TimelineCard from "../components/TimelineCard/TimelineCard";
 import { actionUpdateTab, actionUpdateFavorites } from "../store/actions";
+import ShowMore from "../components/ShowMore/ShowMore";
 
 const styles = theme => ({});
 
-class Favourites extends Component {
+class Favorites extends Component {
   containsFilters = (sessionTopics, appliedFilters) => {
     for (var i = 0, len = sessionTopics.length; i < len; i++) {
       if (appliedFilters.indexOf(sessionTopics[i].id.toString()) > -1)
@@ -18,7 +20,7 @@ class Favourites extends Component {
 
   componentWillMount() {
     const { updateTab } = this.props;
-    updateTab("favourites");
+    updateTab("favorites");
   }
   getFavSessions = (sessions, favorites, appliedFilters) => {
     let favSessions = [];
@@ -38,13 +40,15 @@ class Favourites extends Component {
   getTimelineCard = session => {
     const { updateFavorites, favorites } = this.props;
     return (
-      <div className="wnin-fav-item">
-        <span className="wnin-fav-item-heading has-text-grey">{session.meta.time}</span>
+      <div key={session.id} className="wnin-fav-item">
+        <span className="wnin-fav-item-heading has-text-grey">
+          {session.meta.time}
+        </span>
         <TimelineCard
-          key={session.id}
           session={session}
           favCallback={updateFavorites}
           favorites={favorites}
+          baseRoute={'/home/favorites/'}
         />
       </div>
     );
@@ -57,13 +61,19 @@ class Favourites extends Component {
       appliedFilters
     );
     // displays sessions based on order
-    let sortedFavSessions = favSessions.sort(function(obj1, obj2) {
+    // let sortedFavSessions =
+    favSessions.sort(function(obj1, obj2) {
       return obj1.meta.order - obj2.meta.order;
     });
     if (favSessions.length) {
-      return favSessions.map(session => {
-        return this.getTimelineCard(session);
-      });
+      return (
+        <Fragment>
+          {favSessions.map(session => {
+            return this.getTimelineCard(session);
+          })}
+          {this.createSubRoute(sessions, favorites)}
+        </Fragment>
+      );
     } else {
       return this.getFavPlaceHolder(
         "No sessions found for the applied filters!"
@@ -75,6 +85,25 @@ class Favourites extends Component {
       <span className="wnin-fav-placeholder has-text-grey has-text-centered">
         {title}
       </span>
+    );
+  };
+  createSubRoute = (sessions, favorites) => {
+    return (
+      <Route
+        path={"/home/favorites/:sessionId"}
+        render={({ match }) => {
+          const favSessions = sessions.filter(session => {
+            return favorites.indexOf(session.id.toString()) > -1;
+          });
+          const selectedSession = favSessions.filter(
+            session => session.id.toString() === match.params.sessionId
+          );
+          if (selectedSession.length) {
+            return <ShowMore session={selectedSession[0]} baseRoute={'/home/favorites/'} />;
+          }
+          return <Redirect to="/home/favorites" />;
+        }}
+      />
     );
   };
 
@@ -90,7 +119,7 @@ class Favourites extends Component {
   }
 }
 
-Favourites.propTypes = {
+Favorites.propTypes = {
   classes: PropTypes.object.isRequired,
   sessions: PropTypes.array.isRequired,
   favorites: PropTypes.array.isRequired,
@@ -117,4 +146,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(Favourites));
+)(withStyles(styles)(Favorites));

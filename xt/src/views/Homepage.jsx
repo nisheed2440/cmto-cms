@@ -7,12 +7,12 @@ import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import NavTabs from "../components/NavTabs/NavTabs";
 import HeroBanner from "../components/HeroBanner";
-import BannerImage from "../assets/images/bg9.png";
+import BannerImage from "../assets/images/bg10.png";
 import WninLogo from "../assets/images/CMTOu_white.png";
 import Schedule from "./Schedule";
 import FilterSidebar from "../components/FilterSidebar/FilterSidebar";
 import FilterHeader from "../components/FilterHeader/FilterHeader";
-import Favourites from "./Favourites";
+import Favorites from "./Favorites";
 import { connect } from "react-redux";
 import {
   actionUpdateScheduleInfo,
@@ -26,10 +26,10 @@ import MainLoader from "../components/MainLoader/MainLoader";
 
 const styles = theme => ({});
 
-const routeMapping = {
-  favourites: <Favourites />,
-  agenda: <Schedule />
-};
+// const routeMapping = {
+//   favorites: <Favorites />,
+//   agenda: <Schedule />
+// };
 
 class Homepage extends Component {
   handleChange = (event, value) => {
@@ -101,7 +101,7 @@ class Homepage extends Component {
         <main className="section">
           <div className="container">
             <Switch>
-              <Route
+              {/* <Route
                 path="/home/:tab"
                 render={({ match }) => {
                   const tab = match.params.tab;
@@ -111,9 +111,12 @@ class Homepage extends Component {
                     return <Redirect to="/home/agenda" />;
                   }
                 }}
-              />
-              <Redirect exact from="/home" to="/home/agenda" />
-              <Redirect exact from="/" to="/home" />
+              /> */}
+              <Route path="/home/agenda" component={Schedule}/>
+              <Route path="/home/favorites" component={Favorites}/>
+              <Route render={() => {
+                return (<Redirect to="/home/agenda" />);
+              }}/>
             </Switch>
           </div>
         </main>
