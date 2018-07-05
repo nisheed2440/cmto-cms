@@ -33,6 +33,11 @@ class Schedule extends Component {
         if (this.containsFilters(session.topics, appliedFilters)) {
           filteredSessions.push(session);
         }
+        else {
+          if( session.meta.type === 'break' ) {
+            filteredSessions.push(session);
+          }
+        }
       } else {
         filteredSessions.push(session);
       }
@@ -111,9 +116,8 @@ class Schedule extends Component {
   };
 
   getSessions = sessions => {
-    const { updateFavorites, favorites } = this.props;
     // displays sessions based on order
-    let sortedArr = sessions.sort(function(obj1, obj2) {
+    sessions.sort(function(obj1, obj2) {
       return obj1.meta.order - obj2.meta.order;
     });
 
