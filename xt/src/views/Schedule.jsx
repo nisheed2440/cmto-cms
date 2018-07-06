@@ -32,9 +32,8 @@ class Schedule extends Component {
       if (appliedFilters.length) {
         if (this.containsFilters(session.topics, appliedFilters)) {
           filteredSessions.push(session);
-        }
-        else {
-          if( session.meta.type === 'break' ) {
+        } else {
+          if (session.meta.type === "break") {
             filteredSessions.push(session);
           }
         }
@@ -52,21 +51,18 @@ class Schedule extends Component {
       sessionGroups[group] = sessionGroups[group] || [];
       sessionGroups[group].push(o);
     });
-    return Object.keys(sessionGroups).map( ( group ) =>
-    {
-      if ( sessionGroups[group].length > 1 ) {
+    return Object.keys(sessionGroups).map(group => {
+      if (sessionGroups[group].length > 1) {
         return sessionGroups[group];
-      }
-      else {
+      } else {
         return sessionGroups[group][0];
       }
-      
     });
   };
 
-  displayTimeGroup = (sessionArr) => {
+  displayTimeGroup = sessionArr => {
     const { updateFavorites, favorites } = this.props;
-    return sessionArr.map( session => {
+    return sessionArr.map(session => {
       return (
         <TimelineCard
           key={session.id}
@@ -75,15 +71,18 @@ class Schedule extends Component {
           favorites={favorites}
         />
       );
-    })
+    });
   };
 
-  displaySessionsByGroup = (groupedSessions) => {
+  displaySessionsByGroup = groupedSessions => {
     const { updateFavorites, favorites } = this.props;
-    return groupedSessions.map( (sessionGroup, idx) => {
-      if ( sessionGroup.length ) {
+    return groupedSessions.map((sessionGroup, idx) => {
+      if (sessionGroup.length) {
         return (
-          <div key={sessionGroup[0].id + idx} className="timeline-item is-primary">
+          <div
+            key={sessionGroup[0].id + idx}
+            className="timeline-item is-primary"
+          >
             <div className="timeline-marker" />
             <div className="timeline-content">
               <span className="heading has-text-grey">
@@ -93,8 +92,7 @@ class Schedule extends Component {
             </div>
           </div>
         );
-      }
-      else {
+      } else {
         return (
           <div key={sessionGroup.id} className="timeline-item is-primary">
             <div className="timeline-marker" />
@@ -112,7 +110,7 @@ class Schedule extends Component {
           </div>
         );
       }
-    })
+    });
   };
 
   getSessions = sessions => {
@@ -164,7 +162,14 @@ class Schedule extends Component {
             session => session.id.toString() === match.params.sessionId
           );
           if (selectedSession.length) {
-            return <ShowMore session={selectedSession[0]} />;
+            const { favorites, updateFavorites } = this.props;
+            return (
+              <ShowMore
+                session={selectedSession[0]}
+                favCallback={updateFavorites}
+                favorites={favorites}
+              />
+            );
           }
           return <Redirect to="/home/agenda" />;
         }}

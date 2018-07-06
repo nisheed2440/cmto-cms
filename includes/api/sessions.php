@@ -77,6 +77,7 @@ function get_formated_session_data($session){
         'id' => $session->ID,
         'title' => $session->post_title,
         'content' => $session->post_content,
+        'excerpt' => $session->post_excerpt,
         'topics' => get_session_terms($session),
         'speakers' => get_session_speakers($session),
         'meta' => get_session_meta($session)

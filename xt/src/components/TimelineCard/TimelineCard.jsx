@@ -117,7 +117,7 @@ class TimelineCard extends Component {
               </div>
             ))}
             <div className="wnin-tile-session-excerpt">
-              <p>{session.content}</p>
+              <p>{session.excerpt}</p>
             </div>
           </CardContent>
           <CardActions className="wnin-tile-collapsed-footer">

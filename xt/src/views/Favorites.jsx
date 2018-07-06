@@ -48,7 +48,7 @@ class Favorites extends Component {
           session={session}
           favCallback={updateFavorites}
           favorites={favorites}
-          baseRoute={'/home/favorites/'}
+          baseRoute={"/home/favorites/"}
         />
       </div>
     );
@@ -99,7 +99,15 @@ class Favorites extends Component {
             session => session.id.toString() === match.params.sessionId
           );
           if (selectedSession.length) {
-            return <ShowMore session={selectedSession[0]} baseRoute={'/home/favorites/'} />;
+            const { favorites, updateFavorites } = this.props;
+            return (
+              <ShowMore
+                session={selectedSession[0]}
+                favCallback={updateFavorites}
+                favorites={favorites}
+                baseRoute={"/home/favorites/"}
+              />
+            );
           }
           return <Redirect to="/home/favorites" />;
         }}

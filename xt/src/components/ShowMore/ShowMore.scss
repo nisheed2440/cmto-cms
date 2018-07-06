@@ -1,44 +1,55 @@
 @import "../../utils/typography.scss";
 .wnin-modal {
-    &-container {
-        background: #fff;
+  &-section {
+    padding: rem(27.5px) rem(30px);
+  }
+  &-container {
+    background: #fff;
+  }
+  &-title {
+    @include f-65(16px, 16px * 1.27);
+    margin: 0;
+    font-weight: normal;
+  }
+  &-subtitle {
+    @include f-45(13px, 13px * 1.27);
+    color: #9a9999;
+    font-weight: normal;
+    margin: 0;
+  }
+  &-speaker {
+    margin: rem(27.5px) 0 0;
+    padding: rem(16.66px);
+    background-color: #e1e1e1;
+    @include f-55-r(14px, 14px * 1.27);
+    .media-left {
+      margin-top: 0;
+      margin-left: 0;
+      margin-bottom: 0;
+      p {
+        margin: 0;
+      }
     }
-    &-section {
-        padding: 3rem 1.5rem;
-    }
-    &-title {
-        font-size: 24px;
-        font-weight: bold;
-    }
-    &-heading {
-        font-size: 14px;
-        font-weight: bold;
-    }
-    &-sp-section {
-        background-color: #e1e1e1;
-    }
-    &-sp-container {
-        margin: 15px 0;
-    }
-    &-text-margin {
-        margin-bottom: 15px;
-        margin-top: 5px;
-    }
-    &-social-share {
-        float: left;
-        // @media screen and (min-width: 769px) {
-        //     float: right;
-        // }
-    }
-    &-rating-section {
-        margin-top: 25px;
-    }
-    &-rating-title {
-        font-size: 16px;
-        font-weight: bold;
-    }
-    &-speaker-item {
-        padding: 15px;
+    &-image img {
+      border-radius: 50%;
     }
 
+    &-title {
+      @include f-65(16px, 16px * 1.27);
+    }
+    &-designation {
+      @include f-55-i(14px, 14px * 1.27);
+    }
+  }
+  &-desc {
+    @include f-55-r(14px, 14px * 1.27);
+    padding-top: rem(14px);
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &-social-share {
+    @include f-55-r(14px, 14px * 1.27);
+  }
 }
