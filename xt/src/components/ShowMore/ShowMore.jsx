@@ -62,7 +62,7 @@ class ShowMore extends Component {
     return (
       <section key={speaker.id} className="media wnin-modal-speaker">
         <figure className="media-left">
-          <p className="image is-96x96 wnin-modal-speaker-image">
+          <p className="image wnin-modal-speaker-image">
             <img src={speaker.image} alt={speaker.name} />
           </p>
         </figure>

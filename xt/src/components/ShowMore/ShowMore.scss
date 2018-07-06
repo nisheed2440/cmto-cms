@@ -34,6 +34,19 @@
       border-radius: 50%;
     }
 
+    &-image {
+      width: rem(48px);
+      height: rem(48px);
+      @media screen and (min-width: 768px) {
+        width: rem(64px);
+        height: rem(64px);
+      }
+      @media screen and (min-width: 1024px) {
+        width: rem(96px);
+        height: rem(96px);
+      }
+    }
+
     &-title {
       @include f-65(16px, 16px * 1.27);
     }
