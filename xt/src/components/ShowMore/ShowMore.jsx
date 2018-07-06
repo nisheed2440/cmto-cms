@@ -63,7 +63,12 @@ class ShowMore extends Component {
       <section key={speaker.id} className="media wnin-modal-speaker">
         <figure className="media-left">
           <p className="image wnin-modal-speaker-image">
-            <img src={speaker.image} alt={speaker.name} />
+            <img
+              src={
+                speaker.image ? speaker.image : "//via.placeholder.com/96x96"
+              }
+              alt={speaker.name}
+            />
           </p>
         </figure>
         <div className="media-content">
@@ -127,7 +132,9 @@ class ShowMore extends Component {
             />
             <div className="wnin-modal-social-share">
               <nav className="level is-mobile">
-                <div className="level-left">{this.showFavoriteIcon(session.meta.type)}</div>
+                <div className="level-left">
+                  {this.showFavoriteIcon(session.meta.type)}
+                </div>
                 <SocialShare title={session.title} />
               </nav>
             </div>

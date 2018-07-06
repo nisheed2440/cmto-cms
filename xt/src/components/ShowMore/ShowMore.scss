@@ -57,8 +57,12 @@
   &-desc {
     @include f-55-r(14px, 14px * 1.27);
     padding-top: rem(14px);
+    padding-bottom: rem(14px);
     p:first-child {
       margin-top: 0;
+    }
+    p:first-child {
+      margin-bottom: 0;
     }
   }
 

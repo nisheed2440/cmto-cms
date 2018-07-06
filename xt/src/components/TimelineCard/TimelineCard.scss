@@ -4,6 +4,9 @@
     background-color: #ffffff;
     margin-bottom: 0.5em;
     margin-top: 0.5em;
+    &.break{
+      background-color: transparent;
+    }
   }
   &-header {
   }

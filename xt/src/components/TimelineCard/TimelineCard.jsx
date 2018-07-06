@@ -51,8 +51,16 @@ class TimelineCard extends Component {
     const id = session.id.toString();
     return favorites.indexOf(id) > -1;
   };
+  isBreak = () => {
+    const { session } = this.props;
+    return session.meta.type.toLowerCase() === "break";
+  };
+  isKeynote = () => {
+    const { session } = this.props;
+    return session.meta.type.toLowerCase() === "keynote";
+  };
   showFavoriteIcon = type => {
-    if (type.toLowerCase() !== "break" && type.toLowerCase() !== "keynote") {
+    if (!this.isBreak() && !this.isKeynote()) {
       return (
         <Button
           size="small"
@@ -71,68 +79,86 @@ class TimelineCard extends Component {
   render() {
     const { session, baseRoute } = this.props;
     return (
-      <Card className="wnin-tile-root">
+      <Card
+        className={`wnin-tile-root ${session.meta.type}`}
+        elevation={this.isBreak() ? 0 : 3}
+      >
         <CardHeader
           className="wnin-tile-header"
-          classes={{title: "wnin-tile-title", action: 'wnin-tile-header-actions'}}
+          classes={{
+            title: "wnin-tile-title",
+            action: "wnin-tile-header-actions"
+          }}
           title={session.title}
           subheader={
             <Fragment>
               <span className="wnin-tile-subtitle">
                 {session.meta.duration} | {session.meta.venue}
               </span>
-              <span className="wnin-tile-tags">
-                {session.topics.map(tag => (
-                  <SessionTag
-                    key={tag.id}
-                    label={tag.label}
-                    color={tag.color || ""}
-                  />
-                ))}
-              </span>
+              {!this.isBreak() ? (
+                <span className="wnin-tile-tags">
+                  {session.topics.map(tag => (
+                    <SessionTag
+                      key={tag.id}
+                      label={tag.label}
+                      color={tag.color || ""}
+                    />
+                  ))}
+                </span>
+              ) : (
+                ""
+              )}
             </Fragment>
           }
           action={
-            <Fragment>
-              <IconButton
-                onClick={this.toggleExpanded}
-                className={`wnin-tile-expand ${
-                  this.state.expanded ? "wnin-tile-expand-open" : ""
-                }`}
-              >
-                <Icon>expand_more</Icon>
-              </IconButton>
-              {this.favIcon(session.meta.type)}
-            </Fragment>
+            !this.isBreak() ? (
+              <Fragment>
+                <IconButton
+                  onClick={this.toggleExpanded}
+                  className={`wnin-tile-expand ${
+                    this.state.expanded ? "wnin-tile-expand-open" : ""
+                  }`}
+                >
+                  <Icon>expand_more</Icon>
+                </IconButton>
+                {this.favIcon(session.meta.type)}
+              </Fragment>
+            ) : (
+              ""
+            )
           }
         />
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          <CardContent className="wnin-tile-collapsed-content">
-            {session.speakers.map(speaker => (
-              <div className="wnin-tile-speaker" key={speaker.id}>
-                <span className="wnin-tile-speaker-name">{speaker.name}</span>
-                <span className="wnin-tile-speaker-designation">
-                  {speaker.designation}
-                </span>
+        {!this.isBreak() ? (
+          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+            <CardContent className="wnin-tile-collapsed-content">
+              {session.speakers.map(speaker => (
+                <div className="wnin-tile-speaker" key={speaker.id}>
+                  <span className="wnin-tile-speaker-name">{speaker.name}</span>
+                  <span className="wnin-tile-speaker-designation">
+                    {speaker.designation}
+                  </span>
+                </div>
+              ))}
+              <div className="wnin-tile-session-excerpt">
+                <p>{session.excerpt}</p>
               </div>
-            ))}
-            <div className="wnin-tile-session-excerpt">
-              <p>{session.excerpt}</p>
-            </div>
-          </CardContent>
-          <CardActions className="wnin-tile-collapsed-footer">
-            {this.showFavoriteIcon(session.meta.type)}
-            <Button
-              variant="contained"
-              size="small"
-              color="secondary"
-              component={Link}
-              to={`${baseRoute}${session.id}`}
-            >
-              Show More
-            </Button>
-          </CardActions>
-        </Collapse>
+            </CardContent>
+            <CardActions className="wnin-tile-collapsed-footer">
+              {this.showFavoriteIcon(session.meta.type)}
+              <Button
+                variant="contained"
+                size="small"
+                color="secondary"
+                component={Link}
+                to={`${baseRoute}${session.id}`}
+              >
+                Show More
+              </Button>
+            </CardActions>
+          </Collapse>
+        ) : (
+          ""
+        )}
       </Card>
     );
   }
@@ -149,7 +175,7 @@ TimelineCard.propTypes = {
 TimelineCard.defaultProps = {
   session: { meta: {}, speakers: [], topics: [] },
   favorites: [],
-  baseRoute: '/home/agenda/'
+  baseRoute: "/home/agenda/"
 };
 
 export default TimelineCard;
