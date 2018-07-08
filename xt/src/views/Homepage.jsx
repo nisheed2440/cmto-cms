@@ -82,13 +82,11 @@ class Homepage extends Component {
     const { sidebarOpen, isVisible, tab, filters, appliedFilters } = this.props;
     return (
       <React.Fragment>
-        <div className="container">
-          <HeroBanner imageSrc={BannerImage}>
-            <LazyLoad height={260}>
-              <img src={WninLogo} alt="Logo" />
-            </LazyLoad>
-          </HeroBanner>
-        </div>
+        <HeroBanner imageSrc={BannerImage}>
+          <LazyLoad height={260}>
+            <img src={WninLogo} alt="Logo" />
+          </LazyLoad>
+        </HeroBanner>
         <Paper elevation={1}>
           <NavTabs tab={tab} tabClickHandler={this.handleChange} />
         </Paper>
@@ -112,11 +110,13 @@ class Homepage extends Component {
                   }
                 }}
               /> */}
-              <Route path="/home/agenda" component={Schedule}/>
-              <Route path="/home/favorites" component={Favorites}/>
-              <Route render={() => {
-                return (<Redirect to="/home/agenda" />);
-              }}/>
+              <Route path="/home/agenda" component={Schedule} />
+              <Route path="/home/favorites" component={Favorites} />
+              <Route
+                render={() => {
+                  return <Redirect to="/home/agenda" />;
+                }}
+              />
             </Switch>
           </div>
         </main>
