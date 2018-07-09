@@ -21,14 +21,6 @@ class App extends Component {
       <Provider store={store}>
         <Router basename={process.env.REACT_APP_BASE_PATH}>
           <React.Fragment>
-            <Helmet>
-              <meta charSet="utf-8" />
-              <title>WNIN Info</title>
-              <meta property="url" content="https://wnin.info/"/>
-              <meta property="title" content="What's Next In Now"/>
-              <meta property="image" content={BannerImage}/>
-              <meta property="description" content="Event for CMTOu - Chief Marketing Technology Officer University"/>
-            </Helmet>
             <CssBaseline />
             <MuiThemeProvider theme={theme}>
               <Switch>

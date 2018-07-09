@@ -12,7 +12,8 @@ import "./SocialShare.css";
 
 class SocialShare extends Component {
   render() {
-    const shareUrl = window.location.href;
+    // const shareUrl = window.location.href;
+    const shareUrl = "https://wnin.info/home/agenda/323";
     const { title } = this.props;
     return (
       <div className="level-right">
