@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
+    <meta property="og:url" content="https://wnin.info/"/>
+    <meta property="og:title" content="CMTOu | What's Next Is Now"/>
+    <meta property="og:image" content="https://wnin.info/wp-content/themes/cmto/xt/build/static/media/bg10.895d60b4.png"/>
+    <meta property="og:description" content="Event for CMTOu - Chief Marketing Technology Officer University"/>
+    <meta property="twitter:card" content="CMTOu WNIN"/>
     <link rel="manifest" href="<?php echo get_template_directory_uri() ?>/xt/build/manifest.json">
     <link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/xt/build/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
