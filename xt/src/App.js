@@ -10,9 +10,7 @@ import {
 import { LoadableHomepage } from "./loadable";
 import theme from "./utils/theme";
 import store from "./store";
-import BannerImage from "./assets/images/bg10.png";
 import { Provider } from "react-redux";
-import {Helmet} from "react-helmet";
 import "./App.css";
 
 class App extends Component {
