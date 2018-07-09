@@ -10,7 +10,9 @@ import {
 import { LoadableHomepage } from "./loadable";
 import theme from "./utils/theme";
 import store from "./store";
+import BannerImage from "./assets/images/bg10.png";
 import { Provider } from "react-redux";
+import {Helmet} from "react-helmet";
 import "./App.css";
 
 class App extends Component {
@@ -19,6 +21,14 @@ class App extends Component {
       <Provider store={store}>
         <Router basename={process.env.REACT_APP_BASE_PATH}>
           <React.Fragment>
+            <Helmet>
+              <meta charSet="utf-8" />
+              <title>WNIN Info</title>
+              <meta property="url" content="https://wnin.info/"/>
+              <meta property="title" content="What's Next In Now"/>
+              <meta property="image" content={BannerImage}/>
+              <meta property="description" content="Event for CMTOu - Chief Marketing Technology Officer University"/>
+            </Helmet>
             <CssBaseline />
             <MuiThemeProvider theme={theme}>
               <Switch>
