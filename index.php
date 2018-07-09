@@ -5,7 +5,11 @@
     <meta property="url" content="https://wnin.info/"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <meta property="description" content="<?php echo get_bloginfo('description'); ?>"/>
+    <meta property="og:url" content="https://wnin.info/"/>
+    <meta property="og:title" content="<?php echo get_bloginfo('name'); ?>"/>
+    <meta property="og:image" content="https://wnin.info/wp-content/themes/cmto/xt/build/static/media/bg10.895d60b4.png"/>
+    <meta property="og:description" content="<?php echo get_bloginfo('description'); ?>"/>
+    <meta property="twitter:card" content="<?php echo get_bloginfo('name'); ?>"/>
     <link rel="manifest" href="<?php echo get_template_directory_uri() ?>/xt/build/manifest.json">
     <link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/xt/build/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
