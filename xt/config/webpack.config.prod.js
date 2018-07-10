@@ -69,7 +69,7 @@ module.exports = {
     filename: "static/js/[name].[chunkhash:8].js",
     chunkFilename: "static/js/[name].[chunkhash:8].chunk.js",
     // We inferred the "public path" (such as / or /my-project) from homepage.
-    publicPath: process.env.REACT_APP_PUBLIC_PATH,//publicPath,
+    publicPath: process.env.REACT_APP_PUBLIC_PATH, //publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, "/")
@@ -319,7 +319,20 @@ module.exports = {
       // https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
       navigateFallbackWhitelist: [/^(?!\/__).*/],
       // Don't precache sourcemaps (they're large) and build asset manifest:
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+      mergeStaticsConfig: true,
+      staticFileGlobs: [
+        "build/fonts/**.*",
+        "src/views/Homepage.jsx",
+        "src/views/Schedule.jsx",
+        "src/views/Favorites.jsx",
+      ],
+      stripPrefixMulti: {
+        build: process.env.PUBLIC_URL,
+        "src/views/Homepage.jsx": process.env.REACT_APP_DOMAIN,
+        "src/views/Schedule.jsx": process.env.REACT_APP_DOMAIN + 'home/agenda',
+        "src/views/Favorites.jsx": process.env.REACT_APP_DOMAIN + 'home/favorites',
+      }
     }),
     // Moment.js is an extremely popular library that bundles large locale files
     // by default due to how Webpack interprets its code. This is a practical
