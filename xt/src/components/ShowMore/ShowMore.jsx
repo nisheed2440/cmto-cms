@@ -107,7 +107,7 @@ class ShowMore extends Component {
         title={session.title}
         meta={[
         { property: 'og:title', content: session.title },
-        { property: 'og:description', content: session.content },
+        { property: 'og:description', content: session.excerpt },
         { property: 'twitter:card', content: session.title },
         ]}
         />
