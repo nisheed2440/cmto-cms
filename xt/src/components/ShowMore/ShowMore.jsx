@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 import SocialShare from "../SocialShare/SocialShare";
+import { Helmet } from "react-helmet";
 // import SpeakerSocialShare from "../SpeakerSocialShare/SpeakerSocialShare";
 import "./ShowMore.css";
 
@@ -102,6 +103,13 @@ class ShowMore extends Component {
         TransitionComponent={Transition}
         classes={{ paper: "wnin-modal-container" }}
       >
+      <Helmet
+        title={session.title}
+        meta={[
+        { property: 'og:title', content: session.title },
+        { property: 'og:description', content: session.content },
+        ]}
+        />
         <div className="wnin-filter-wrapper">
           <div className="wnin-filter-container container is-fluid">
             <div className="wnin-filter-button-wrapper">
