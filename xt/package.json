@@ -42,6 +42,7 @@
     "react": "^16.4.0",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.0",
+    "react-helmet": "^5.2.0",
     "react-lazy-hero": "^0.4.0",
     "react-lazyload": "^2.3.0",
     "react-loadable": "^5.4.0",
@@ -114,7 +115,6 @@
   },
   "devDependencies": {
     "jsonminify": "^0.4.1",
-    "on-build-webpack": "^0.1.0",
-    "react-helmet": "^5.2.0"
+    "on-build-webpack": "^0.1.0"
   }
 }
