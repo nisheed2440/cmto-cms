@@ -108,6 +108,7 @@ class ShowMore extends Component {
         meta={[
         { property: 'og:title', content: session.title },
         { property: 'og:description', content: session.content },
+        { property: 'twitter:card', content: session.title },
         ]}
         />
         <div className="wnin-filter-wrapper">
