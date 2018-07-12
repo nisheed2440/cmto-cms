@@ -2,14 +2,17 @@
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="utf-8">
-    <meta property="url" content="<?php echo home_url();?>"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <meta property="og:url" content="<?php echo home_url();?>"/>
-    <!-- <meta property="og:title" content="<?php echo get_bloginfo('name'); ?>"/> -->
-    <meta property="og:image" content="https://wnin.info/wp-content/themes/cmto/xt/build/static/media/bg10.895d60b4.png"/>
-    <!-- <meta property="og:description" content="<?php echo get_bloginfo('description'); ?>"/> -->
-    <!-- <meta property="twitter:card" content="<?php echo get_bloginfo('name'); ?>"/> -->
+    <meta property="og:url" content="https://wnin.info/"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="<?php echo get_bloginfo('name'); ?>"/>
+    <meta property="og:image" content="<?php echo get_template_directory_uri() ?>/xt/build/wnin.jpg"/>
+    <meta property="og:description" content="<?php echo get_bloginfo('description'); ?>"/>
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:title" content="<?php echo get_bloginfo('name'); ?>"/>
+    <meta property="twitter:image" content="<?php echo get_template_directory_uri() ?>/xt/build/wnin.jpg"/>
+    <meta property="twitter:description" content="<?php echo get_bloginfo('description'); ?>"/>
     <link rel="manifest" href="<?php echo get_template_directory_uri() ?>/xt/build/manifest.json">
     <link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/xt/build/favicon.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
