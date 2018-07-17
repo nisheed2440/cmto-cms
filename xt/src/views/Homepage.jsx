@@ -7,7 +7,7 @@ import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import NavTabs from "../components/NavTabs/NavTabs";
 import HeroBanner from "../components/HeroBanner";
-import BannerImage from "../assets/images/bg10.png";
+import BannerImage from "../assets/images/bg10.jpg";
 import WninLogo from "../assets/images/CMTOu_white.png";
 import Schedule from "./Schedule";
 import FilterSidebar from "../components/FilterSidebar/FilterSidebar";

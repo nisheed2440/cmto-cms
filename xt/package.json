@@ -115,6 +115,7 @@
   },
   "devDependencies": {
     "jsonminify": "^0.4.1",
+    "offline-plugin": "^5.0.5",
     "on-build-webpack": "^0.1.0"
   }
 }
