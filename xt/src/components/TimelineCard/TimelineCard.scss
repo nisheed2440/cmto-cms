@@ -9,6 +9,14 @@
     }
   }
   &-header {
+    border-left-color: transparent;
+    border-left-style: solid;
+    border-left-width: 3px;
+  }
+  &-collapsed-section {
+    border-left-color: transparent;
+    border-left-style: solid;
+    border-left-width: 3px;
   }
   &-title {
     @include f-65(16px, 16px * 1.27);
