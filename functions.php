@@ -82,11 +82,6 @@ function get_theme_custom_logo()
     return $image[0];
 }
 
-function manifest_rewrite() {
-    add_rewrite_rule('(manifest\.json)', 'wp-content/themes/cmto/xt/build/manifest.json', 'top');
-}
-add_action('init', 'manifest_rewrite', 10, 0);
-
 // Auto install the plugins using TGM plugin activation
 require_once dirname(__FILE__) . '/includes/activate-plugins.php';
 
