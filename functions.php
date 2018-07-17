@@ -29,15 +29,36 @@ function register_theme_logo()
 }
 
 // Register style sheet.
-add_action('wp_enqueue_scripts', 'register_theme_styles');
+add_action('wp_head', 'add_theme_styles');
 add_action('wp_enqueue_scripts', 'register_theme_scripts');
+add_action('wp_enqueue_scripts', 'lazy_load_fonts');
 
-function register_theme_styles()
+function add_theme_styles()
 {
-    wp_register_style('cmto_wnin_fonts', get_template_directory_uri() . '/xt/build/fonts/stylesheet.css', array(), null);
-    wp_enqueue_style('cmto_wnin_fonts');
-    wp_register_style('cmto_wnin_css', get_template_directory_uri() . '/xt/build/' . $GLOBALS["REACT_ASSETS"]['mainCss'], array(), null);
-    wp_enqueue_style('cmto_wnin_css');
+    $mainCSS = file_get_contents(get_template_directory() . '/xt/build/' . $GLOBALS["REACT_ASSETS"]['mainCss']);
+    echo "<style>". $mainCSS ."</style>";
+}
+
+function lazy_load_fonts(){
+    $themeFont = "(function(d){
+        var x = d.createElement(\"link\");
+        var y = d.getElementsByTagName(\"script\")[0];
+        x.rel = \"stylesheet\";
+        x.href = \"". get_template_directory_uri() . '/xt/build/fonts/stylesheet.css' ."\";
+        y.parentNode.insertBefore(x, y);
+    })(document);";
+
+    $iconsFont = "(function(d){
+        var x = d.createElement(\"link\");
+        var y = d.getElementsByTagName(\"script\")[0];
+        x.rel = \"stylesheet\";
+        x.href = \"https://fonts.googleapis.com/icon?family=Material+Icons\";
+        y.parentNode.insertBefore(x, y);
+    })(document);";
+
+    
+    wp_add_inline_script('cmto_wnin_js', $themeFont);
+    wp_add_inline_script('cmto_wnin_js', $iconsFont);
 }
 
 function register_theme_scripts()
@@ -59,6 +80,11 @@ function get_theme_custom_logo()
     $custom_logo_id = get_theme_mod('custom_logo');
     $image          = wp_get_attachment_image_src($custom_logo_id, 'full');
     return $image[0];
+}
+
+add_action('init', 'manifest_rewrite', 10, 0);
+function manifest_rewrite() {
+    add_rewrite_rule('(manifest\.json)', 'wp-content/themes/cmto/xt/build/manifest.json', 'top');
 }
 
 // Auto install the plugins using TGM plugin activation

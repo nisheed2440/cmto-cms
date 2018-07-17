@@ -129,9 +129,9 @@ class Schedule extends Component {
           <span className="tag is-medium is-primary has-text-white">Start</span>
         </header>
         {this.displaySessionsByGroup(result)}
-        <header className="timeline-header">
+        <footer className="timeline-header">
           <span className="tag is-medium is-primary has-text-white">End</span>
-        </header>
+        </footer>
       </div>
     );
   };

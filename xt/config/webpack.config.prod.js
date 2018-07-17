@@ -340,9 +340,13 @@ module.exports = {
         "/",
         "/home/agenda/",
         "/home/favorites/",
-        "https://fonts.googleapis.com/icon?family=Material+Icons"
+        "https://fonts.googleapis.com/icon?family=Material+Icons",
+        "https://cdn.polyfill.io/v2/polyfill.min.js"
       ],
-      appShell: "/"
+      appShell: "/",
+      publicPath: process.env.REACT_APP_PUBLIC_PATH,
+      responseStrategy: "network-first",
+      updateStrategy: "all"
     }),
     // Moment.js is an extremely popular library that bundles large locale files
     // by default due to how Webpack interprets its code. This is a practical
