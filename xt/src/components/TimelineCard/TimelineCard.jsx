@@ -8,6 +8,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Collapse from "@material-ui/core/Collapse";
 import Icon from "@material-ui/core/Icon";
+import orange from '@material-ui/core/colors/orange';
+import green from '@material-ui/core/colors/green';
+import blue from '@material-ui/core/colors/blue';
 import SessionTag from "../SessionTag/SessionTag";
 import { Link } from "react-router-dom";
 import "./TimelineCard.css";
@@ -90,6 +93,7 @@ class TimelineCard extends Component {
             action: "wnin-tile-header-actions"
           }}
           title={session.title}
+          style={{ borderLeftColor: session.meta.venueColor }}
           subheader={
             <Fragment>
               <span className="wnin-tile-subtitle">
@@ -129,7 +133,8 @@ class TimelineCard extends Component {
           }
         />
         {!this.isBreak() ? (
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit className="wnin-tile-collapsed-section"
+          style={{ borderLeftColor: session.meta.venueColor }}>
             <CardContent className="wnin-tile-collapsed-content">
               {session.speakers.map(speaker => (
                 <div className="wnin-tile-speaker" key={speaker.id}>

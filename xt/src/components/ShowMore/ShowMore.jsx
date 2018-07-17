@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 import SocialShare from "../SocialShare/SocialShare";
+import SessionTag from "../SessionTag/SessionTag";
 import { Helmet } from "react-helmet";
 // import SpeakerSocialShare from "../SpeakerSocialShare/SpeakerSocialShare";
 import "./ShowMore.css";
@@ -126,11 +127,20 @@ class ShowMore extends Component {
         </div>
         <div className="section wnin-modal-section">
           <div className="container">
-            <div>
+            <div className="wnin-modal-header-section" style={{borderLeftColor: session.meta.venueColor}}>
               <h1 className="wnin-modal-title">{session.title}</h1>
               <h3 className="wnin-modal-subtitle">
                 {session.meta.duration} | {session.meta.venue}
               </h3>
+              <span className="wnin-modal-tags">
+                  {session.topics.map(tag => (
+                    <SessionTag
+                      key={tag.id}
+                      label={tag.label}
+                      color={tag.color || ""}
+                    />
+                  ))}
+                </span>
             </div>
             {session.speakers.map(speaker => {
               return this.getSpeakerTile(speaker, session);
