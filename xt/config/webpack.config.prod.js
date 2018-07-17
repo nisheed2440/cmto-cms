@@ -337,15 +337,14 @@ module.exports = {
     // }),
     new OfflinePlugin({
       externals: [
-        "/",
-        "/home/agenda/",
-        "/home/favorites/",
+        "https://wnin.info/",
+        "https://wnin.info/home/agenda/",
+        "https://wnin.info/home/favorites/",
         "https://fonts.googleapis.com/icon?family=Material+Icons",
         "https://cdn.polyfill.io/v2/polyfill.min.js"
       ],
-      appShell: "/",
+      appShell: "/home/agenda/",
       publicPath: process.env.REACT_APP_PUBLIC_PATH,
-      responseStrategy: "network-first",
       updateStrategy: "all"
     }),
     // Moment.js is an extremely popular library that bundles large locale files
