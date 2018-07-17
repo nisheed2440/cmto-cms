@@ -18,33 +18,6 @@ class SpeakerSocialShare extends Component {
       <Grid container className="wnin-ss-social-container">
         <Grid item xs={12} sm={10}>
           <div className="wnin-ss-icon">
-            <TwitterShareButton
-              url={social.twitter ? social.twitter : ''}
-              title={title}
-              className="wnin-ss-button"
-            >
-              <TwitterIcon
-                size={40}
-                iconBgStyle={{ fill: "transparent" }}
-                logoFillColor={"#000000"}
-              />
-            </TwitterShareButton>
-          </div>
-          <div className="wnin-ss-icon">
-            <FacebookShareButton
-              url={social.facebook ? social.facebook : ''}
-              quote={title}
-              className="wnin-ss-button"
-            >
-              <FacebookIcon
-                size={40}
-                round={false}
-                iconBgStyle={{ fill: "transparent" }}
-                logoFillColor={"#000000"}
-              />
-            </FacebookShareButton>
-          </div>
-          <div className="wnin-ss-icon">
             <LinkedinShareButton
               url={social.linkedin ? social.linkedin : ''}
               className="wnin-ss-button"

@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import SocialShare from "../SocialShare/SocialShare";
 import SessionTag from "../SessionTag/SessionTag";
 import { Helmet } from "react-helmet";
-// import SpeakerSocialShare from "../SpeakerSocialShare/SpeakerSocialShare";
+import SpeakerSocialShare from "../SpeakerSocialShare/SpeakerSocialShare";
 import "./ShowMore.css";
 
 function Transition(props) {
@@ -85,7 +85,7 @@ class ShowMore extends Component {
               <p>{speaker.description}</p>
             </div>
           </div>
-          {/* <SpeakerSocialShare title={session.title} social={speaker.social} /> */}
+          <SpeakerSocialShare title={session.title} social={speaker.social} />
         </div>
       </section>
     );
