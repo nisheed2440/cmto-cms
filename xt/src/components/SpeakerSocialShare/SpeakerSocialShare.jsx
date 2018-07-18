@@ -18,16 +18,13 @@ class SpeakerSocialShare extends Component {
       <Grid container className="wnin-ss-social-container">
         <Grid item xs={12} sm={10}>
           <div className="wnin-ss-icon">
-            <LinkedinShareButton
-              url={social.linkedin ? social.linkedin : ''}
-              className="wnin-ss-button"
-            >
-              <LinkedinIcon
-                size={40}
-                iconBgStyle={{ fill: "transparent" }}
-                logoFillColor={"#000000"}
-              />
-            </LinkedinShareButton>
+          <a href={social.linkedin} target="_blank">
+            <LinkedinIcon
+                  size={40}
+                  iconBgStyle={{ fill: "transparent" }}
+                  logoFillColor={"#000000"}
+                />
+           </a>
           </div>
         </Grid>
       </Grid>
