@@ -59,6 +59,9 @@
       @include f-55-r(14px, 14px * 1.27);
     }
   }
+  &-speaker:not(:first-child) {
+    margin: 15px 0;
+  }
   &-collapsed-content {
     padding-top: 0;
   }
