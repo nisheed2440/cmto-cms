@@ -13,7 +13,6 @@
     <meta property="twitter:title" content="<?php echo get_bloginfo('name'); ?>"/>
     <meta property="twitter:image" content="<?php echo get_template_directory_uri() ?>/xt/build/wnin.jpg"/>
     <meta property="twitter:description" content="<?php echo get_bloginfo('description'); ?>"/>
-    <link rel="manifest" href="<?php echo get_bloginfo('url') ?>/manifest.json">
     <link rel="shortcut icon" href="<?php echo get_template_directory_uri() ?>/xt/build/favicon.ico">
     <title><?php echo get_bloginfo('name'); ?></title>
     <?php wp_head(); ?>

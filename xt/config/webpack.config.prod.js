@@ -335,18 +335,19 @@ module.exports = {
     //     build: process.env.PUBLIC_URL
     //   }
     // }),
-    new OfflinePlugin({
-      externals: [
-        "https://wnin.info/",
-        "https://wnin.info/home/agenda/",
-        "https://wnin.info/home/favorites/",
-        "https://fonts.googleapis.com/icon?family=Material+Icons",
-        "https://cdn.polyfill.io/v2/polyfill.min.js"
-      ],
-      appShell: "/home/agenda/",
-      publicPath: process.env.REACT_APP_PUBLIC_PATH,
-      updateStrategy: "all"
-    }),
+    // Offline Plugin
+    // new OfflinePlugin({
+    //   externals: [
+    //     "https://wnin.info/",
+    //     "https://wnin.info/home/agenda/",
+    //     "https://wnin.info/home/favorites/",
+    //     "https://fonts.googleapis.com/icon?family=Material+Icons",
+    //     "https://cdn.polyfill.io/v2/polyfill.min.js"
+    //   ],
+    //   appShell: "/home/agenda/",
+    //   publicPath: process.env.REACT_APP_PUBLIC_PATH,
+    //   updateStrategy: "all"
+    // }),
     // Moment.js is an extremely popular library that bundles large locale files
     // by default due to how Webpack interprets its code. This is a practical
     // solution that requires the user to opt into importing specific locales.
