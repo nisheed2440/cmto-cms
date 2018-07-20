@@ -10,6 +10,7 @@ import SocialShare from "../SocialShare/SocialShare";
 import SessionTag from "../SessionTag/SessionTag";
 import { Helmet } from "react-helmet";
 import SpeakerSocialShare from "../SpeakerSocialShare/SpeakerSocialShare";
+import { DiscussionEmbed, CommentCount } from "disqus-react";
 import "./ShowMore.css";
 
 function Transition(props) {
@@ -96,6 +97,14 @@ class ShowMore extends Component {
     if (redirect) {
       return <Redirect to={baseRoute} />;
     }
+
+    const disqusShortname = "wnin-cmtou";
+    const disqusConfig = {
+      url: `https://wnin.info/home/agenda/${session.id}`,
+      identifier: session.id,
+      title: session.title
+    };
+
     return (
       <Dialog
         fullScreen
@@ -104,13 +113,13 @@ class ShowMore extends Component {
         TransitionComponent={Transition}
         classes={{ paper: "wnin-modal-container" }}
       >
-      <Helmet
-        title={session.title}
-        meta={[
-        { property: 'og:title', content: session.title },
-        { property: 'og:description', content: session.excerpt },
-        { property: 'twitter:card', content: session.title },
-        ]}
+        <Helmet
+          title={session.title}
+          meta={[
+            { property: "og:title", content: session.title },
+            { property: "og:description", content: session.excerpt },
+            { property: "twitter:card", content: session.title }
+          ]}
         />
         <div className="wnin-filter-wrapper">
           <div className="wnin-filter-container container is-fluid">
@@ -127,20 +136,23 @@ class ShowMore extends Component {
         </div>
         <div className="section wnin-modal-section">
           <div className="container">
-            <div className="wnin-modal-header-section" style={{borderLeftColor: session.meta.venueColor}}>
+            <div
+              className="wnin-modal-header-section"
+              style={{ borderLeftColor: session.meta.venueColor }}
+            >
               <h1 className="wnin-modal-title">{session.title}</h1>
               <h3 className="wnin-modal-subtitle">
                 {session.meta.duration} | {session.meta.venue}
               </h3>
               <span className="wnin-modal-tags">
-                  {session.topics.map(tag => (
-                    <SessionTag
-                      key={tag.id}
-                      label={tag.label}
-                      color={tag.color || ""}
-                    />
-                  ))}
-                </span>
+                {session.topics.map(tag => (
+                  <SessionTag
+                    key={tag.id}
+                    label={tag.label}
+                    color={tag.color || ""}
+                  />
+                ))}
+              </span>
             </div>
             {session.speakers.map(speaker => {
               return this.getSpeakerTile(speaker, session);
@@ -157,6 +169,7 @@ class ShowMore extends Component {
                 <SocialShare title={session.title} />
               </nav>
             </div>
+            <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
           </div>
         </div>
       </Dialog>
