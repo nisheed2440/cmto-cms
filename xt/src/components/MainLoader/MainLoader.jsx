@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import WninLogo from "../../assets/images/CMTOu_white.png";
 import "./MainLoader.css";
 
 class Loader extends Component {
@@ -15,7 +14,7 @@ class Loader extends Component {
         <div className="wnin-loader-logo-wrapper">
           <div
             className="wnin-loader-logo"
-            style={{ backgroundImage: `url(${WninLogo})` }}
+            style={{ backgroundImage: `${window.wninLogo}` }}
           />
           <CircularProgress
             className="wnin-loader-spinner"

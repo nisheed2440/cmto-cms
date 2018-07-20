@@ -40,6 +40,14 @@ function add_theme_styles()
 }
 
 function lazy_load_fonts(){
+
+    $logoImage = "(function(d, w){
+        var logoImage = d.getElementById('wnin-logo-image');
+        var loader = d.querySelector('.wnin-loader-logo');
+        w.wninLogo = logoImage.textContent.trim();
+        loader.style.backgroundImage = w.wninLogo;
+    })(document, window);";
+
     $themeFont = "(function(d){
         var x = d.createElement(\"link\");
         var y = d.getElementsByTagName(\"script\")[0];
@@ -57,6 +65,7 @@ function lazy_load_fonts(){
     })(document);";
 
     
+    wp_add_inline_script('cmto_wnin_js', $logoImage, 'before');
     wp_add_inline_script('cmto_wnin_js', $themeFont);
     wp_add_inline_script('cmto_wnin_js', $iconsFont);
 }

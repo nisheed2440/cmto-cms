@@ -10,7 +10,7 @@ import SocialShare from "../SocialShare/SocialShare";
 import SessionTag from "../SessionTag/SessionTag";
 import { Helmet } from "react-helmet";
 import SpeakerSocialShare from "../SpeakerSocialShare/SpeakerSocialShare";
-import { DiscussionEmbed, CommentCount } from "disqus-react";
+import { DiscussionEmbed } from "disqus-react";
 import "./ShowMore.css";
 
 function Transition(props) {
@@ -195,7 +195,7 @@ class ShowMore extends Component {
                 shortname={disqusShortname}
                 config={disqusConfig}
               />
-              {this.state.disqusInit ? (
+              {/* {this.state.disqusInit ? (
                 <Fragment>
                   <div className="wnin-modal-disqus-hidden-1" />
                   <div className="wnin-modal-disqus-hidden-2" />
@@ -203,7 +203,7 @@ class ShowMore extends Component {
                 </Fragment>
               ) : (
                 ""
-              )}
+              )} */}
             </footer>
           </div>
         </div>
