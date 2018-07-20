@@ -79,4 +79,40 @@
   &-social-share {
     @include f-55-r(14px, 14px * 1.27);
   }
+
+  &-footer {
+    position: relative;
+  }
+  &-disqus-hidden {
+    &-1 {
+      width: 114px;
+      height: 39px;
+      position: absolute;
+      top: 0;
+      left: 105px;
+      z-index: 99999;
+      background: #fff;
+    }
+    &-2 {
+      width: 230px;
+      height: 25px;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      z-index: 99999;
+      background: #fff;
+    }
+    &-3 {
+      width: 100%;
+      height: 46px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 99999;
+      background: #fff;
+      @media screen and (min-width: 558px) {
+        height: 36px;
+      }
+    }
+  }
 }

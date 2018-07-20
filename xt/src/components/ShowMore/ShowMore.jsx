@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import Dialog from "@material-ui/core/Dialog";
@@ -18,12 +18,17 @@ function Transition(props) {
 }
 
 class ShowMore extends Component {
+  constructor(props) {
+    super(props);
+    this.disqusDiv = React.createRef();
+  }
   state = {
     redirect: false
   };
   onClose = () => {
     this.setState({
-      redirect: true
+      redirect: true,
+      disqusInit: false
     });
   };
   updateFavs = () => {
@@ -91,6 +96,19 @@ class ShowMore extends Component {
       </section>
     );
   }
+  onEnteredCb = () => {
+    if (this.disqusDiv.current) {
+      var interval = setInterval(() => {
+        const disqusHeight = this.disqusDiv.current.offsetHeight;
+        if (disqusHeight > 150) {
+          clearInterval(interval);
+          this.setState({
+            disqusInit: true
+          });
+        }
+      });
+    }
+  };
   render() {
     const { session, baseRoute } = this.props;
     const { redirect } = this.state;
@@ -112,6 +130,9 @@ class ShowMore extends Component {
         onClose={this.onClose}
         TransitionComponent={Transition}
         classes={{ paper: "wnin-modal-container" }}
+        onEntered={() => {
+          this.onEnteredCb();
+        }}
       >
         <Helmet
           title={session.title}
@@ -169,7 +190,21 @@ class ShowMore extends Component {
                 <SocialShare title={session.title} />
               </nav>
             </div>
-            <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+            <footer className="wnin-modal-footer" ref={this.disqusDiv}>
+              <DiscussionEmbed
+                shortname={disqusShortname}
+                config={disqusConfig}
+              />
+              {this.state.disqusInit ? (
+                <Fragment>
+                  <div className="wnin-modal-disqus-hidden-1" />
+                  <div className="wnin-modal-disqus-hidden-2" />
+                  <div className="wnin-modal-disqus-hidden-3" />
+                </Fragment>
+              ) : (
+                ""
+              )}
+            </footer>
           </div>
         </div>
       </Dialog>
