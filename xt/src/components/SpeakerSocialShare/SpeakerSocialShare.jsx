@@ -2,18 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import {
-  TwitterShareButton,
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterIcon,  
-  LinkedinShareButton,
   LinkedinIcon
 } from "react-share";
 import "./SpeakerSocialShare.css";
 
 class SpeakerSocialShare extends Component {
   render() {
-    const { title, social } = this.props;
+    const { social } = this.props;
     return (
       <Grid container className="wnin-ss-social-container">
         <Grid item xs={12} sm={10}>
@@ -32,7 +27,6 @@ class SpeakerSocialShare extends Component {
   }
 }
 SpeakerSocialShare.propTypes = {
-  title: PropTypes.string.isRequired,
   social: PropTypes.object.isRequired
 };
 export default SpeakerSocialShare;
