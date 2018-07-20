@@ -59,7 +59,7 @@ function get_session_meta($session) {
     $sessionMeta = get_fields($session->ID);
     return array(
         'order' => $sessionMeta['order'],
-        'venue' => $sessionMeta['venue'],
+        'venue' => html_entity_decode($sessionMeta['venue']),
         'time' => $sessionMeta['time'],
         'type' => $sessionMeta['type'],
         'duration' => $sessionMeta['duration'],
